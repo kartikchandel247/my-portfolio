@@ -469,5 +469,71 @@
   animation: spin3DClockwise 26s linear infinite;
 }
 
+/* Futuristic Holographic Laser Scan Sweep */
+@keyframes holographicScan {
+  0% {
+    top: 6%;
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  50% {
+    top: 92%;
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    top: 6%;
+    opacity: 0;
+  }
+}
 
+.animate-holo-scan {
+  animation: holographicScan 5.5s ease-in-out infinite;
+}
 
+/* 3D Cyber Pedestal Radar Rotation */
+@keyframes radarSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes radarSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-radar-spin {
+  animation: radarSpin 20s linear infinite;
+}
+
+.animate-radar-reverse {
+  animation: radarSpinReverse 15s linear infinite;
+}
+
+/* Hologram Aura Breathing Pulse */
+@keyframes cyberPulseAura {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.12);
+    opacity: 0.75;
+  }
+}
+
+.animate-cyber-aura {
+  animation: cyberPulseAura 7s ease-in-out infinite;
+}
