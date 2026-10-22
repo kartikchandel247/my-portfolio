@@ -438,4 +438,36 @@
   animation: glowingBorderFlow 8s ease infinite;
 }
 
+/* 3D Cyber Ring Rotation Keyframes */
+@keyframes spin3DClockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin3DCounterClockwise {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-ring-spin-cw {
+  animation: spin3DClockwise 14s linear infinite;
+}
+
+.animate-ring-spin-ccw {
+  animation: spin3DCounterClockwise 18s linear infinite;
+}
+
+.animate-ring-spin-slow {
+  animation: spin3DClockwise 26s linear infinite;
+}
+
+
 
