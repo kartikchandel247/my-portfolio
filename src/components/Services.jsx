@@ -2,6 +2,7 @@ import { Layout, Layers, Server, ShieldCheck, ArrowRight, CheckCircle2 } from 'l
 import { services } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
+import SubpageHeader from './SubpageHeader';
 
 const iconMap = {
   Layout: Layout,
@@ -10,27 +11,24 @@ const iconMap = {
   ShieldCheck: ShieldCheck,
 };
 
-export default function Services() {
+export default function Services({ onNavigate }) {
   return (
-    <section id="services" className="py-24 relative overflow-hidden">
+    <section id="services" className="pt-8 pb-24 relative overflow-hidden">
       
       {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
-      <SectionBackground variant="services" showTopDivider={true} showBottomDivider={true} />
+      <SectionBackground variant="services" showTopDivider={false} showBottomDivider={true} />
+
+      {/* Subpage Header Banner */}
+      <SubpageHeader
+        badge="What I Deliver"
+        title="Comprehensive Services &"
+        titleHighlight="Solutions"
+        description="High-caliber full stack web engineering and cross-platform Flutter mobile development, paired with rigorous Playwright automated testing to help you build and scale with zero regressions."
+        currentId="services"
+        onNavigate={onNavigate}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
-            What I Deliver
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Comprehensive Services & <span className="text-gradient-indigo">Solutions</span>
-          </h2>
-          <p className="text-base text-slate-600 leading-relaxed">
-            High-caliber development paired with rigorous quality assurance to help you build and scale with confidence.
-          </p>
-        </div>
 
         {/* Services Grid with Immediate Display + Floating & 3D Tilt */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

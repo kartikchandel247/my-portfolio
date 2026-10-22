@@ -4,8 +4,9 @@ import confetti from 'canvas-confetti';
 import { personalInfo } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
+import SubpageHeader from './SubpageHeader';
 
-export default function Contact() {
+export default function Contact({ onNavigate }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -43,25 +44,22 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <section id="contact" className="pt-8 pb-24 relative overflow-hidden">
       
       {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
-      <SectionBackground variant="contact" showTopDivider={true} showBottomDivider={false} />
+      <SectionBackground variant="contact" showTopDivider={false} showBottomDivider={false} />
+
+      {/* Subpage Header Banner */}
+      <SubpageHeader
+        badge="Get In Touch"
+        title="Let's Build Something"
+        titleHighlight="Exceptional"
+        description="Have an upcoming project, need full-stack web or mobile engineering, or require comprehensive QA automation testing? Connect with me directly on WhatsApp, Email, or through the inquiry form below."
+        currentId="contact"
+        onNavigate={onNavigate}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
-            Get In Touch
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Let's Build Something <span className="text-gradient-indigo">Exceptional</span>
-          </h2>
-          <p className="text-base text-slate-600 leading-relaxed">
-            Have a project in mind, need full-stack engineering, or require comprehensive QA automation testing? Reach out directly!
-          </p>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           

@@ -2,10 +2,19 @@ import { ArrowUp } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsAppIcon } from './Icons';
 
-export default function Footer() {
+export default function Footer({ onNavigate }) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const navLinks = [
+    { name: 'Home', id: 'home' },
+    { name: 'About', id: 'about' },
+    { name: 'Services', id: 'services' },
+    { name: 'Projects', id: 'projects' },
+    { name: 'Tech Stack', id: 'skills' },
+    { name: 'Contact', id: 'contact' },
+  ];
 
   return (
     <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
@@ -23,6 +32,19 @@ export default function Footer() {
             <p className="text-[11px] text-slate-500 mt-0.5">
               Bilaspur, Himachal Pradesh • Amritsar Group of Colleges
             </p>
+          </div>
+
+          {/* Subpage Links */}
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold">
+            {navLinks.map((link) => (
+              <button
+                key={link.id}
+                onClick={() => onNavigate && onNavigate(link.id)}
+                className="hover:text-indigo-400 text-slate-400 transition-colors cursor-pointer"
+              >
+                {link.name}
+              </button>
+            ))}
           </div>
 
           {/* Social Badges */}

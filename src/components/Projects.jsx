@@ -4,10 +4,11 @@ import { projects } from '../data/portfolioData';
 import { GithubIcon } from './Icons';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
+import SubpageHeader from './SubpageHeader';
 
 const categories = ['All', 'Mobile', 'Web', 'AI & System', 'Enterprise / CRM', 'QA & Testing'];
 
-export default function Projects() {
+export default function Projects({ onNavigate }) {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredProjects = selectedCategory === 'All'
@@ -15,25 +16,22 @@ export default function Projects() {
     : projects.filter((p) => p.category.toLowerCase().includes(selectedCategory.toLowerCase()) || selectedCategory.toLowerCase().includes(p.category.toLowerCase()));
 
   return (
-    <section id="projects" className="py-24 relative overflow-hidden">
+    <section id="projects" className="pt-8 pb-24 relative overflow-hidden">
       
       {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
-      <SectionBackground variant="projects" showTopDivider={true} showBottomDivider={true} />
+      <SectionBackground variant="projects" showTopDivider={false} showBottomDivider={true} />
+
+      {/* Subpage Header Banner */}
+      <SubpageHeader
+        badge="Featured Portfolio"
+        title="Flagship Engineering"
+        titleHighlight="Projects"
+        description="Comprehensive real-world web platforms, mobile Flutter applications, AI assistants, and enterprise CRM solutions with live architecture breakdowns."
+        currentId="projects"
+        onNavigate={onNavigate}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
-            Featured Portfolio
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Flagship Engineering <span className="text-gradient-indigo">Projects</span>
-          </h2>
-          <p className="text-base text-slate-600 leading-relaxed">
-            Real-world web platforms, mobile Flutter applications, AI assistants, and enterprise CRM solutions.
-          </p>
-        </div>
 
         {/* Filter Tabs */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-12">

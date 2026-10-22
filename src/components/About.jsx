@@ -2,8 +2,9 @@ import { GraduationCap, MapPin, Award, CheckCircle2, Cpu, HeartHandshake, ArrowU
 import { personalInfo } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
+import SubpageHeader from './SubpageHeader';
 
-export default function About() {
+export default function About({ onNavigate }) {
   const highlights = [
     {
       title: 'Full Stack Web & Mobile Engineering',
@@ -67,25 +68,22 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden">
+    <section id="about" className="pt-8 pb-24 relative overflow-hidden">
       
       {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
-      <SectionBackground variant="about" showTopDivider={true} showBottomDivider={true} />
+      <SectionBackground variant="about" showTopDivider={false} showBottomDivider={true} />
+
+      {/* Subpage Header Banner */}
+      <SubpageHeader
+        badge="About Kartik Chandel"
+        title="Developer Mindset."
+        titleHighlight="QA Precision."
+        description="I don't just build applications — I ensure they operate flawlessly under every edge case. Explore my background, academic credentials, and core engineering superpowers below."
+        currentId="about"
+        onNavigate={onNavigate}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
-            About Kartik Chandel
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Developer Mindset. <span className="text-gradient-indigo">QA Precision.</span>
-          </h2>
-          <p className="text-base text-slate-600 leading-relaxed">
-            I don't just build applications — I ensure they operate flawlessly under every edge case.
-          </p>
-        </div>
 
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">

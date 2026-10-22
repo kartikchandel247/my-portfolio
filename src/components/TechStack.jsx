@@ -2,6 +2,7 @@ import { Code2, Smartphone, Database, ShieldCheck, CheckCircle } from 'lucide-re
 import { skills } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
+import SubpageHeader from './SubpageHeader';
 
 const categoryIcons = {
   'Frontend Development': Code2,
@@ -10,27 +11,24 @@ const categoryIcons = {
   'Quality Assurance & Testing': ShieldCheck,
 };
 
-export default function TechStack() {
+export default function TechStack({ onNavigate }) {
   return (
-    <section id="skills" className="py-24 relative overflow-hidden">
+    <section id="skills" className="pt-8 pb-24 relative overflow-hidden">
       
       {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
-      <SectionBackground variant="skills" showTopDivider={true} showBottomDivider={true} />
+      <SectionBackground variant="skills" showTopDivider={false} showBottomDivider={true} />
+
+      {/* Subpage Header Banner */}
+      <SubpageHeader
+        badge="Skills & Ecosystem"
+        title="Technical Stack &"
+        titleHighlight="Tools"
+        description="A battle-tested stack spanning full-stack web architectures, mobile application development, and industrial-strength QA automation. Explore full proficiencies across all 4 domains below."
+        currentId="skills"
+        onNavigate={onNavigate}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
-          <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
-            Skills & Ecosystem
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Technical Stack & <span className="text-gradient-indigo">Tools</span>
-          </h2>
-          <p className="text-base text-slate-600 leading-relaxed">
-            A battle-tested stack spanning full-stack web architectures, mobile application development, and industrial-strength QA automation.
-          </p>
-        </div>
 
         {/* Skills Category Grid with Immediate Display + 3D Tilt */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

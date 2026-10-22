@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, Home } from 'lucide-react';
 
-export default function Navbar() {
+export default function Navbar({ currentPage = 'home', onNavigate }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     let ticking = false;
@@ -14,21 +13,6 @@ export default function Navbar() {
         requestAnimationFrame(() => {
           const isScrolled = window.scrollY > 20;
           setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
-
-          const sections = ['home', 'about', 'services', 'projects', 'skills', 'contact'];
-          const scrollPosition = window.scrollY + 220;
-
-          for (const section of sections) {
-            const el = document.getElementById(section);
-            if (el) {
-              const top = el.offsetTop;
-              const height = el.offsetHeight;
-              if (scrollPosition >= top && scrollPosition < top + height) {
-                setActiveSection((prev) => (prev !== section ? section : prev));
-                break;
-              }
-            }
-          }
           ticking = false;
         });
         ticking = true;
@@ -48,6 +32,13 @@ export default function Navbar() {
     { name: 'Contact', href: '#contact', id: 'contact' },
   ];
 
+  const handleLinkClick = (e, pageId) => {
+    e.preventDefault();
+    if (onNavigate) {
+      onNavigate(pageId);
+    }
+  };
+
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -56,9 +47,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo & Avatar on Left */}
-        <a
-          href="#home"
-          className="flex items-center gap-3 group focus:outline-none"
+        <button
+          onClick={(e) => handleLinkClick(e, 'home')}
+          className="flex items-center gap-3 group focus:outline-none cursor-pointer text-left"
         >
           <div className="relative">
             <div className="w-10 h-10 rounded-full p-[2px] bg-gradient-to-tr from-indigo-500 via-purple-500 to-emerald-400 shadow-md group-hover:scale-105 transition-transform overflow-hidden">
@@ -82,17 +73,17 @@ export default function Navbar() {
               Full Stack & QA Specialist
             </span>
           </div>
-        </a>
+        </button>
 
         {/* Desktop Navigation Aligned in Right Top Corner */}
         <nav className="hidden md:flex items-center gap-1.5 bg-white/80 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-slate-200/90 shadow-soft-sm ml-auto">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.id;
+            const isActive = currentPage === link.id;
             return (
-              <a
+              <button
                 key={link.name}
-                href={link.href}
-                className={`text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-1.5 ${
+                onClick={(e) => handleLinkClick(e, link.id)}
+                className={`text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
                   isActive
                     ? 'bg-indigo-50/90 text-indigo-600 border border-indigo-200/90 shadow-sm shadow-indigo-500/15 backdrop-blur-sm scale-[1.02]'
                     : 'text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 border border-transparent'
@@ -100,7 +91,7 @@ export default function Navbar() {
               >
                 {link.name === 'Home' && <Home className="w-3.5 h-3.5" />}
                 {link.name}
-              </a>
+              </button>
             );
           })}
         </nav>
@@ -108,7 +99,7 @@ export default function Navbar() {
         {/* Mobile Hamburger Button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-xl bg-white/90 border border-slate-200 text-slate-700 hover:text-slate-900 focus:outline-none ml-auto"
+          className="md:hidden p-2 rounded-xl bg-white/90 border border-slate-200 text-slate-700 hover:text-slate-900 focus:outline-none ml-auto cursor-pointer"
           aria-label="Toggle navigation menu"
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -119,21 +110,26 @@ export default function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden glass-nav border-t border-slate-200/80 px-6 py-6 mt-3 shadow-xl">
           <div className="flex flex-col space-y-2">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`text-base font-bold py-2.5 px-3.5 rounded-xl transition-all flex items-center gap-2 ${
-                  activeSection === link.id
-                    ? 'bg-indigo-50 text-indigo-600 border border-indigo-200 shadow-sm'
-                    : 'text-slate-700 hover:text-indigo-600 hover:bg-slate-50'
-                }`}
-              >
-                {link.name === 'Home' && <Home className="w-4 h-4" />}
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = currentPage === link.id;
+              return (
+                <button
+                  key={link.name}
+                  onClick={(e) => {
+                    setMobileMenuOpen(false);
+                    handleLinkClick(e, link.id);
+                  }}
+                  className={`text-base font-bold py-2.5 px-3.5 rounded-xl transition-all flex items-center gap-2 cursor-pointer w-full text-left ${
+                    isActive
+                      ? 'bg-indigo-50 text-indigo-600 border border-indigo-200 shadow-sm'
+                      : 'text-slate-700 hover:text-indigo-600 hover:bg-slate-50'
+                  }`}
+                >
+                  {link.name === 'Home' && <Home className="w-4 h-4" />}
+                  {link.name}
+                </button>
+              );
+            })}
           </div>
         </div>
       )}
