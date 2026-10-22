@@ -15,6 +15,20 @@ export default function HomeOverview({ onNavigate }) {
     margin: '-40px 0px -40px 0px',
   });
 
+  const servicesRef = useRef(null);
+  const isServicesInView = useInView(servicesRef, {
+    once: false,
+    amount: 0.2,
+    margin: '-30px 0px -30px 0px',
+  });
+
+  const projectsRef = useRef(null);
+  const isProjectsInView = useInView(projectsRef, {
+    once: false,
+    amount: 0.2,
+    margin: '-30px 0px -30px 0px',
+  });
+
   const quickStats = [
     { number: '4+', label: 'Flagship Projects', detail: 'Mobile, Web, CRM, AI' },
     { number: '100+', label: 'QA Test Scenarios', detail: 'Automated & Manual Probes' },
@@ -226,35 +240,64 @@ export default function HomeOverview({ onNavigate }) {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {featuredServices.map((service, idx) => (
-              <TiltCard
-                key={service.id}
-                maxTilt={8}
-                scale={1.02}
-                className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-soft-sm hover:border-indigo-300 transition-all cursor-pointer relative overflow-hidden"
-              >
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 mb-4 font-bold">
-                  {idx + 1}
-                </div>
-                <h3 className="text-lg font-bold text-slate-900 mb-2">{service.title}</h3>
-                <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed mb-4">
-                  {service.description}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {service.technologies.slice(0, 3).map((t) => (
-                    <span key={t} className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
-                      {t}
-                    </span>
-                  ))}
-                  {service.technologies.length > 3 && (
-                    <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-600">
-                      +{service.technologies.length - 3} more
-                    </span>
-                  )}
-                </div>
-              </TiltCard>
-            ))}
+          <div ref={servicesRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {featuredServices.map((service, idx) => {
+              const isLeft = idx === 0;
+              return (
+                <motion.div
+                  key={service.id}
+                  initial="hidden"
+                  animate={isServicesInView ? 'visible' : 'hidden'}
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      x: isLeft ? -110 : 110,
+                      scale: 0.92,
+                    },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                      scale: 1,
+                      transition: {
+                        type: 'spring',
+                        stiffness: 210,
+                        damping: 22,
+                        mass: 0.85,
+                        delay: isLeft ? 0.05 : 0.15,
+                      },
+                    },
+                  }}
+                  className="h-full will-change-transform"
+                >
+                  <TiltCard
+                    maxTilt={8}
+                    scale={1.05}
+                    horizontalMove={16}
+                    className="h-full p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-soft-sm hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-500/10 transition-all cursor-pointer relative overflow-hidden"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 mb-4 font-bold">
+                      {idx + 1}
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-900 mb-2">{service.title}</h3>
+                    <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed mb-4">
+                      {service.description}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {service.technologies.slice(0, 3).map((t) => (
+                        <span key={t} className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-slate-100 text-slate-700">
+                          {t}
+                        </span>
+                      ))}
+                      {service.technologies.length > 3 && (
+                        <span className="text-[11px] font-semibold px-2 py-0.5 rounded-md bg-indigo-50 text-indigo-600">
+                          +{service.technologies.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  </TiltCard>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -283,50 +326,79 @@ export default function HomeOverview({ onNavigate }) {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {featuredProjects.map((p) => (
-              <TiltCard
-                key={p.id}
-                maxTilt={8}
-                scale={1.02}
-                className="p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-soft-sm hover:border-indigo-300 transition-all cursor-pointer flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3">
-                    <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-200/60">
-                      {p.category}
-                    </span>
-                    <span className="text-[11px] font-semibold text-slate-500">
-                      {p.techStack.slice(0, 3).join(' • ')}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-extrabold text-slate-900 mb-1">{p.title}</h3>
-                  <p className="text-xs text-indigo-600/90 font-medium mb-3">{p.subtitle}</p>
-                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4">
-                    {p.description}
-                  </p>
-                </div>
+          <div ref={projectsRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {featuredProjects.map((p, idx) => {
+              const isLeft = idx === 0;
+              return (
+                <motion.div
+                  key={p.id}
+                  initial="hidden"
+                  animate={isProjectsInView ? 'visible' : 'hidden'}
+                  variants={{
+                    hidden: {
+                      opacity: 0,
+                      x: isLeft ? -110 : 110,
+                      scale: 0.92,
+                    },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                      scale: 1,
+                      transition: {
+                        type: 'spring',
+                        stiffness: 210,
+                        damping: 22,
+                        mass: 0.85,
+                        delay: isLeft ? 0.05 : 0.15,
+                      },
+                    },
+                  }}
+                  className="h-full will-change-transform"
+                >
+                  <TiltCard
+                    maxTilt={8}
+                    scale={1.05}
+                    horizontalMove={16}
+                    className="h-full p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-soft-sm hover:border-indigo-300 hover:shadow-xl hover:shadow-indigo-500/10 transition-all cursor-pointer flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-3">
+                        <span className="text-xs font-bold text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full border border-indigo-200/60">
+                          {p.category}
+                        </span>
+                        <span className="text-[11px] font-semibold text-slate-500">
+                          {p.techStack.slice(0, 3).join(' • ')}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-extrabold text-slate-900 mb-1">{p.title}</h3>
+                      <p className="text-xs text-indigo-600/90 font-medium mb-3">{p.subtitle}</p>
+                      <p className="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4">
+                        {p.description}
+                      </p>
+                    </div>
 
-                <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
-                  <span onClick={() => onNavigate('projects')} className="hover:underline flex items-center gap-1">
-                    Read Architecture & Highlights
-                    <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                  {p.liveUrl && (
-                    <a
-                      href={p.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-slate-500 hover:text-slate-900 flex items-center gap-1"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <span>Live Demo</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
-                </div>
-              </TiltCard>
-            ))}
+                    <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-indigo-600">
+                      <span onClick={() => onNavigate('projects')} className="hover:underline flex items-center gap-1">
+                        Read Architecture & Highlights
+                        <ArrowRight className="w-3.5 h-3.5" />
+                      </span>
+                      {p.liveUrl && (
+                        <a
+                          href={p.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-slate-500 hover:text-slate-900 flex items-center gap-1"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <span>Live Demo</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
+                    </div>
+                  </TiltCard>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
