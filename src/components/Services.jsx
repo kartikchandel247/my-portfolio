@@ -1,5 +1,4 @@
 import { Layout, Layers, Server, ShieldCheck, ArrowRight, CheckCircle2 } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { services } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
@@ -20,14 +19,8 @@ export default function Services() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Rapid Slide-Down */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.05 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="text-center max-w-3xl mx-auto space-y-3 mb-16"
-        >
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
             What I Deliver
           </span>
@@ -37,25 +30,17 @@ export default function Services() {
           <p className="text-base text-slate-600 leading-relaxed">
             High-caliber development paired with rigorous quality assurance to help you build and scale with confidence.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Services Grid with Fast Alternating Slide Entrance + 3D Tilt */}
+        {/* Services Grid with Immediate Display + Floating & 3D Tilt */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {services.map((service, index) => {
             const Icon = iconMap[service.icon] || Layout;
-            const fromLeft = index % 2 === 0;
             const serviceFloats = ['animate-card-float-1', 'animate-card-float-2', 'animate-card-float-3', 'animate-card-float-4'];
             const floatClass = serviceFloats[index % serviceFloats.length];
 
             return (
-              <motion.div
-                key={service.id}
-                initial={{ opacity: 0, x: fromLeft ? -25 : 25, y: 12 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true, amount: 0.05 }}
-                transition={{ duration: 0.25, delay: index * 0.04, ease: 'easeOut' }}
-                className="h-full"
-              >
+              <div key={service.id} className="h-full">
                 <div className={`${floatClass} pause-on-hover h-full`}>
                   <TiltCard
                     maxTilt={10}
@@ -120,7 +105,7 @@ export default function Services() {
                     </div>
                   </TiltCard>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

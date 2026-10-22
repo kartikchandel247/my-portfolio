@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Mail, Phone, MessageSquare, Send, ArrowUpRight, CheckCircle2, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { personalInfo } from '../data/portfolioData';
 import TiltCard from './TiltCard';
@@ -51,14 +50,8 @@ export default function Contact() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Fast Slide-Down */}
-        <motion.div
-          initial={{ opacity: 0, y: -15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.05 }}
-          transition={{ duration: 0.28, ease: 'easeOut' }}
-          className="text-center max-w-3xl mx-auto space-y-3 mb-16"
-        >
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
             Get In Touch
           </span>
@@ -68,18 +61,12 @@ export default function Contact() {
           <p className="text-base text-slate-600 leading-relaxed">
             Have a project in mind, need full-stack engineering, or require comprehensive QA automation testing? Reach out directly!
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column: Direct Contact Action Badges (Fast Slide in from Left) */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ duration: 0.28, ease: 'easeOut' }}
-            className="lg:col-span-5 space-y-6"
-          >
+          {/* Left Column: Direct Contact Action Badges */}
+          <div className="lg:col-span-5 space-y-6">
             <div className="p-7 rounded-3xl bg-slate-50/90 border border-slate-200/80 space-y-6 shadow-soft-sm">
               <h3 className="text-xl font-bold text-slate-900">
                 Direct Communication Channels
@@ -163,16 +150,10 @@ export default function Contact() {
 
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Right Column: Contact Form (Fast Slide in from Right) */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.05 }}
-            transition={{ duration: 0.28, ease: 'easeOut' }}
-            className="lg:col-span-7"
-          >
+          {/* Right Column: Contact Form */}
+          <div className="lg:col-span-7">
             <TiltCard maxTilt={6} className="p-8 sm:p-10 rounded-3xl bg-white/95 border border-slate-200/90 shadow-soft-xl relative overflow-hidden">
               {/* Periodic Light Beam Sweep */}
               <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-white/50 to-transparent z-10 rounded-[inherit]" />
@@ -284,7 +265,7 @@ export default function Contact() {
               )}
 
             </TiltCard>
-          </motion.div>
+          </div>
 
         </div>
 

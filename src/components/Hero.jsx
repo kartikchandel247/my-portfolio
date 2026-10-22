@@ -15,18 +15,18 @@ const roles = [
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState('Full Stack Web Developer');
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
-    const typingSpeed = isDeleting ? 40 : 80;
+    const typingSpeed = isDeleting ? 25 : 45;
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
         setDisplayText(currentRole.substring(0, displayText.length + 1));
         if (displayText === currentRole) {
-          setTimeout(() => setIsDeleting(true), 1800);
+          setTimeout(() => setIsDeleting(true), 1200);
         }
       } else {
         setDisplayText(currentRole.substring(0, displayText.length - 1));
@@ -51,9 +51,8 @@ export default function Hero() {
           
           {/* Left Column: Narrative, Typing Effect, Action Badges */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={false}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
             className="lg:col-span-7 flex flex-col items-start text-left space-y-6"
           >
             
@@ -164,9 +163,8 @@ export default function Hero() {
 
           {/* Right Column: Hero Transparent Body Cutout with Orbiting Cyber Animations */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, x: 30 }}
+            initial={false}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: 'easeOut', delay: 0.1 }}
             className="lg:col-span-5 relative flex items-center justify-center min-h-[520px]"
           >
             <HeroCutoutDisplay />

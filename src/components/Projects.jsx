@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ExternalLink, Lock, Smartphone, Globe, Bot, ShieldCheck, Check, Sparkles, AlertCircle } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '../data/portfolioData';
 import { GithubIcon } from './Icons';
 import TiltCard from './TiltCard';
@@ -23,14 +22,8 @@ export default function Projects() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Fast Entrance */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.05 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="text-center max-w-3xl mx-auto space-y-3 mb-12"
-        >
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
           <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
             Featured Portfolio
           </span>
@@ -40,16 +33,10 @@ export default function Projects() {
           <p className="text-base text-slate-600 leading-relaxed">
             Real-world web platforms, mobile Flutter applications, AI assistants, and enterprise CRM solutions.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Filter Tabs with Fast Click Switch */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.05 }}
-          transition={{ duration: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-2 mb-12"
-        >
+        {/* Filter Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
           {categories.map((category) => (
             <button
               key={category}
@@ -63,27 +50,17 @@ export default function Projects() {
               {category}
             </button>
           ))}
-        </motion.div>
+        </div>
 
-        {/* Projects Grid with Ultra-Fast Staggered Rise & 3D Tilt */}
+        {/* Projects Grid with Immediate Display + 3D Tilt */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => {
+          {filteredProjects.map((project, index) => {
               const isPrivate = project.isPrivate;
               const projectFloats = ['animate-card-float-1', 'animate-card-float-3', 'animate-card-float-2', 'animate-card-float-4'];
               const floatClass = projectFloats[index % projectFloats.length];
 
               return (
-                <motion.div
-                  key={project.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.95, y: 15 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  viewport={{ once: true, amount: 0.05 }}
-                  transition={{ duration: 0.22, delay: index * 0.03, ease: 'easeOut' }}
-                  className="h-full"
-                >
+                <div key={project.id} className="h-full">
                   <div className={`${floatClass} pause-on-hover h-full`}>
                     <TiltCard
                       maxTilt={10}
@@ -208,20 +185,13 @@ export default function Projects() {
 
                   </TiltCard>
                 </div>
-              </motion.div>
+              </div>
             );
-            })}
-          </AnimatePresence>
+          })}
         </div>
 
-        {/* GitHub Account Auto-Inspection Callout with Fast Slide-Up */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.05 }}
-          transition={{ duration: 0.35 }}
-          className="mt-14 p-6 rounded-3xl bg-gradient-to-r from-slate-900 to-indigo-950 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl"
-        >
+        {/* GitHub Account Auto-Inspection Callout */}
+        <div className="mt-14 p-6 rounded-3xl bg-gradient-to-r from-slate-900 to-indigo-950 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
           <div className="space-y-1 text-center md:text-left">
             <h4 className="text-lg font-bold flex items-center justify-center md:justify-start gap-2">
               <GithubIcon className="w-5 h-5 text-indigo-400" />
@@ -240,7 +210,7 @@ export default function Projects() {
             <span>Visit @kartikchandel247</span>
             <ExternalLink className="w-4 h-4" />
           </a>
-        </motion.div>
+        </div>
 
       </div>
     </section>

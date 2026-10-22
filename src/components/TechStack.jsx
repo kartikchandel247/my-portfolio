@@ -1,5 +1,4 @@
 import { Code2, Smartphone, Database, ShieldCheck, CheckCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { skills } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
@@ -20,14 +19,8 @@ export default function TechStack() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Slide-Down */}
-        <motion.div
-          initial={{ opacity: 0, y: -25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto space-y-3 mb-16"
-        >
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
             Skills & Ecosystem
           </span>
@@ -37,9 +30,9 @@ export default function TechStack() {
           <p className="text-base text-slate-600 leading-relaxed">
             A battle-tested stack spanning full-stack web architectures, mobile application development, and industrial-strength QA automation.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Skills Category Grid with Fast Staggered Rise & 3D Tilt */}
+        {/* Skills Category Grid with Immediate Display + 3D Tilt */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skills.map((group, index) => {
             const IconComponent = categoryIcons[group.category] || Code2;
@@ -47,14 +40,7 @@ export default function TechStack() {
             const floatClass = skillFloats[index % skillFloats.length];
 
             return (
-              <motion.div
-                key={group.category}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.05 }}
-                transition={{ duration: 0.25, delay: index * 0.04, ease: 'easeOut' }}
-                className="h-full"
-              >
+              <div key={group.category} className="h-full">
                 <div className={`${floatClass} pause-on-hover h-full`}>
                   <TiltCard
                     maxTilt={10}
@@ -108,7 +94,7 @@ export default function TechStack() {
                     </div>
                   </TiltCard>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </div>

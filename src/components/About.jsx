@@ -1,5 +1,4 @@
 import { GraduationCap, MapPin, Award, CheckCircle2, Cpu, HeartHandshake, ArrowUpRight, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
@@ -75,14 +74,8 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Fast Entrance */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.35, ease: 'easeOut' }}
-          className="text-center max-w-3xl mx-auto space-y-3 mb-16"
-        >
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
           <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
             About Kartik Chandel
           </span>
@@ -92,19 +85,13 @@ export default function About() {
           <p className="text-base text-slate-600 leading-relaxed">
             I don't just build applications — I ensure they operate flawlessly under every edge case.
           </p>
-        </motion.div>
+        </div>
 
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Portrait Photo with 3D Tilt */}
-          <motion.div
-            initial={{ opacity: 0, x: -35 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="lg:col-span-5 flex justify-center"
-          >
+          <div className="lg:col-span-5 flex justify-center">
             <TiltCard maxTilt={10} scale={1.03} className="relative w-full max-w-[340px]">
               
               {/* Cinematic Glow Behind Image */}
@@ -115,6 +102,8 @@ export default function About() {
                   <img
                     src="/kartik-portrait.jpg"
                     alt="Kartik Chandel Profile"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover object-top transition-transform duration-300"
                   />
                 </div>
@@ -130,16 +119,10 @@ export default function About() {
               </div>
 
             </TiltCard>
-          </motion.div>
+          </div>
 
-          {/* Right Column: Story & Background (Fast Slide from Right) */}
-          <motion.div
-            initial={{ opacity: 0, x: 35 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="lg:col-span-7 space-y-6 text-slate-600 text-base leading-relaxed"
-          >
+          {/* Right Column: Story & Background */}
+          <div className="lg:col-span-7 space-y-6 text-slate-600 text-base leading-relaxed">
             <div className="p-6 rounded-2xl bg-white/90 border border-slate-200/90 shadow-soft-sm space-y-4">
               <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-indigo-600" />
@@ -203,34 +186,21 @@ export default function About() {
               </a>
             </div>
 
-          </motion.div>
+          </div>
 
         </div>
 
-        {/* Core Engineering Superpowers: Fast Staggered Motion & Floating Levitation */}
+        {/* Core Engineering Superpowers: Fast Organic Motion & Floating Levitation */}
         <div className="mt-16 space-y-4">
-          <motion.h3
-            initial={{ opacity: 0, y: -10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.3 }}
-            className="text-lg font-extrabold text-slate-900 text-center"
-          >
+          <h3 className="text-lg font-extrabold text-slate-900 text-center">
             Core Engineering Superpowers
-          </motion.h3>
+          </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {highlights.map((item, idx) => {
+            {highlights.map((item) => {
               const IconComponent = item.icon;
               return (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.05 }}
-                  transition={{ duration: 0.25, delay: idx * 0.04, ease: 'easeOut' }}
-                  className="h-full"
-                >
+                <div key={item.title} className="h-full">
                   <div className={`${item.floatClass} pause-on-hover h-full`}>
                     <TiltCard
                       maxTilt={12}
@@ -271,32 +241,20 @@ export default function About() {
                       </div>
                     </TiltCard>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
         </div>
 
-        {/* Stats Row with Lively Floating Motion, Beam Sweeps & Fast Hover Elevation */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.05 }}
-          transition={{ duration: 0.28, ease: 'easeOut' }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-slate-200/70"
-        >
+        {/* Stats Row with Immediate Presence, Lively Floating Motion, Beam Sweeps & Fast Hover Elevation */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-slate-200/70">
           {stats.map((stat, sIdx) => {
             const statFloats = ['animate-card-float-2', 'animate-card-float-3', 'animate-card-float-4', 'animate-card-float-1'];
             const currentFloat = statFloats[sIdx % statFloats.length];
 
             return (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.05 }}
-                transition={{ duration: 0.22, delay: sIdx * 0.04 }}
-              >
+              <div key={stat.label}>
                 <div className={`${currentFloat} pause-on-hover`}>
                   <TiltCard
                     maxTilt={10}
@@ -314,10 +272,10 @@ export default function About() {
                     <div className="text-xs text-slate-500 mt-1">{stat.detail}</div>
                   </TiltCard>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
       </div>
     </section>

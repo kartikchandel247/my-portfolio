@@ -2,21 +2,30 @@ import { useState, useRef } from 'react';
 
 export default function HeroCutoutDisplay() {
   const containerRef = useRef(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const tiltBoxRef = useRef(null);
+  const rafId = useRef(null);
 
   const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !tiltBoxRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
-    setTilt({
-      x: (y / (rect.height / 2)) * -6,
-      y: (x / (rect.width / 2)) * 6,
+    const tiltX = ((y / (rect.height / 2)) * -6).toFixed(2);
+    const tiltY = ((x / (rect.width / 2)) * 6).toFixed(2);
+
+    if (rafId.current) cancelAnimationFrame(rafId.current);
+    rafId.current = requestAnimationFrame(() => {
+      if (tiltBoxRef.current) {
+        tiltBoxRef.current.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+      }
     });
   };
 
   const handleMouseLeave = () => {
-    setTilt({ x: 0, y: 0 });
+    if (rafId.current) cancelAnimationFrame(rafId.current);
+    if (tiltBoxRef.current) {
+      tiltBoxRef.current.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    }
   };
 
   return (
@@ -35,9 +44,10 @@ export default function HeroCutoutDisplay() {
         and the rings will never drift away into the text!
       */}
       <div
-        className="relative inline-flex items-center justify-center transition-transform duration-200 ease-out animate-card-float-1"
+        ref={tiltBoxRef}
+        className="relative inline-flex items-center justify-center transition-transform duration-150 ease-out animate-card-float-1 will-change-transform"
         style={{
-          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          transform: 'rotateX(0deg) rotateY(0deg)',
           transformStyle: 'preserve-3d',
         }}
       >
@@ -122,6 +132,9 @@ export default function HeroCutoutDisplay() {
           <img
             src="/kartik-cutout-tight.png"
             alt="Kartik Chandel Cutout"
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
             className="w-auto h-[460px] sm:h-[510px] md:h-[540px] object-contain drop-shadow-[0_16px_35px_rgba(15,23,42,0.22)] drop-shadow-[0_0_35px_rgba(99,102,241,0.35)] transition-all duration-300"
           />
 
