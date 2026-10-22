@@ -3,6 +3,7 @@ import { personalInfo } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
 import SubpageHeader from './SubpageHeader';
+import ScrollPopStats from './ScrollPopStats';
 
 export default function About({ onNavigate }) {
   const highlights = [
@@ -245,34 +246,9 @@ export default function About({ onNavigate }) {
           </div>
         </div>
 
-        {/* Stats Row with Immediate Presence, Lively Floating Motion, Beam Sweeps & Fast Hover Elevation */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-slate-200/70">
-          {stats.map((stat, sIdx) => {
-            const statFloats = ['animate-card-float-2', 'animate-card-float-3', 'animate-card-float-4', 'animate-card-float-1'];
-            const currentFloat = statFloats[sIdx % statFloats.length];
-
-            return (
-              <div key={stat.label}>
-                <div className={`${currentFloat} pause-on-hover`}>
-                  <TiltCard
-                    maxTilt={10}
-                    scale={1.04}
-                    glareColor="rgba(99, 102, 241, 0.3)"
-                    className="group p-5 rounded-2xl bg-white border border-slate-200/90 text-center shadow-soft-sm hover:border-indigo-300 hover:shadow-xl transition-all duration-150 cursor-pointer overflow-hidden relative"
-                  >
-                    {/* Periodic Light Beam Sweep */}
-                    <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-white/50 to-transparent z-10 rounded-[inherit]" />
-
-                    <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-1 text-gradient-indigo group-hover:scale-115 transition-transform duration-150">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm font-bold text-slate-800">{stat.label}</div>
-                    <div className="text-xs text-slate-500 mt-1">{stat.detail}</div>
-                  </TiltCard>
-                </div>
-              </div>
-            );
-          })}
+        {/* Stats Row with Scroll-Triggered Pop-Up Motion & Dynamic Counters */}
+        <div className="mt-16 pt-12 border-t border-slate-200/70">
+          <ScrollPopStats stats={stats} />
         </div>
 
       </div>

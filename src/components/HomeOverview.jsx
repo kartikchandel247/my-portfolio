@@ -2,6 +2,7 @@ import { ArrowRight, Code2, ShieldCheck, Sparkles, Smartphone, Bot, Cpu, CheckCi
 import Hero from './Hero';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
+import ScrollPopStats from './ScrollPopStats';
 import { personalInfo, projects, services } from '../data/portfolioData';
 
 export default function HomeOverview({ onNavigate }) {
@@ -32,22 +33,9 @@ export default function HomeOverview({ onNavigate }) {
       {/* 1. Hero Section with 3D Rings & Cutout */}
       <Hero onNavigate={onNavigate} />
 
-      {/* 2. Compact Quick Stats Ribbon */}
+      {/* 2. Compact Quick Stats Ribbon with Scroll Pop-Up Motion */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 p-4 sm:p-6 rounded-3xl bg-white/95 backdrop-blur-xl border border-slate-200/90 shadow-soft-xl">
-          {quickStats.map((stat, idx) => {
-            const floats = ['animate-card-float-1', 'animate-card-float-2', 'animate-card-float-3', 'animate-card-float-4'];
-            return (
-              <div key={stat.label} className="text-center p-3 rounded-2xl hover:bg-slate-50/80 transition-colors">
-                <div className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gradient-indigo mb-1">
-                  {stat.number}
-                </div>
-                <div className="text-xs sm:text-sm font-bold text-slate-800">{stat.label}</div>
-                <div className="text-[11px] text-slate-500 mt-0.5 hidden sm:block">{stat.detail}</div>
-              </div>
-            );
-          })}
-        </div>
+        <ScrollPopStats stats={quickStats} />
       </div>
 
       {/* 3. Short About Snapshot (Brief 2-Sentence Bio + Teaser Highlights) */}
