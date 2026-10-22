@@ -2,8 +2,10 @@
 
 @layer base {
   :root {
-    --primary-glow: radial-gradient(rgba(99, 102, 241, 0.15), rgba(248, 250, 252, 0));
-    --secondary-glow: radial-gradient(rgba(16, 185, 129, 0.12), rgba(248, 250, 252, 0));
+    --primary-glow: radial-gradient(rgba(99, 102, 241, 0.25), rgba(248, 250, 252, 0));
+    --secondary-glow: radial-gradient(rgba(16, 185, 129, 0.2), rgba(248, 250, 252, 0));
+    --movie-beam-1: #6366f1;
+    --movie-beam-2: #10b981;
   }
 
   html {
@@ -15,6 +17,7 @@
     background-color: #F8FAFC;
     color: #0F172A;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   /* Custom Sleek Scrollbar */
@@ -34,28 +37,54 @@
   }
 }
 
+/* Glassmorphism & Cinematic Film Cards */
 .glass-nav {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(241, 245, 249, 1);
-  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.04), 0 4px 10px -2px rgba(15, 23, 42, 0.02);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card:hover {
-  border-color: rgba(199, 210, 254, 0.9);
-  box-shadow: 0 20px 40px -8px rgba(99, 102, 241, 0.08), 0 8px 16px -4px rgba(15, 23, 42, 0.03);
-  transform: translateY(-3px);
+  border-color: rgba(165, 180, 252, 0.9);
+  box-shadow: 0 24px 50px -10px rgba(99, 102, 241, 0.12), 0 10px 20px -5px rgba(16, 185, 129, 0.06);
+  transform: translateY(-4px);
 }
 
+/* Cinematic Glowing Border Effect */
+.movie-glow-border {
+  position: relative;
+}
+
+.movie-glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2px;
+  background: linear-gradient(135deg, #6366f1, #a855f7, #10b981, #06b6d4);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+
+.movie-glow-border:hover::before {
+  opacity: 1;
+}
+
+/* Gradients */
 .text-gradient {
   background: linear-gradient(135deg, #1E1B4B 0%, #4338CA 50%, #065F46 100%);
   -webkit-background-clip: text;
@@ -63,7 +92,13 @@
 }
 
 .text-gradient-indigo {
-  background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 50%, #2563EB 100%);
+  background: linear-gradient(135deg, #4338CA 0%, #7C3AED 50%, #2563EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-cinematic {
+  background: linear-gradient(135deg, #1E1B4B 0%, #6366F1 40%, #A855F7 70%, #059669 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -74,4 +109,65 @@
 
 .shadow-soft-xl {
   box-shadow: 0 20px 40px -6px rgba(15, 23, 42, 0.08), 0 8px 16px -4px rgba(15, 23, 42, 0.04);
+}
+
+.shadow-cinematic {
+  box-shadow: 0 20px 50px -10px rgba(99, 102, 241, 0.18), 0 10px 25px -5px rgba(16, 185, 129, 0.12);
+}
+
+/* Animations for movie lights and floating elements */
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 0.45;
+    transform: rotate(-18deg) scale(1);
+  }
+  50% {
+    opacity: 0.75;
+    transform: rotate(-15deg) scale(1.05);
+  }
+}
+
+@keyframes pulseSlowReverse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: rotate(16deg) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: rotate(19deg) scale(1.06);
+  }
+}
+
+@keyframes bounceFloat {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-16px) translateX(8px);
+  }
+}
+
+@keyframes bounceFloatDelay {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-20px) translateX(-10px);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 9s ease-in-out infinite;
+}
+
+.animate-pulse-slow-reverse {
+  animation: pulseSlowReverse 11s ease-in-out infinite;
+}
+
+.animate-bounce-float {
+  animation: bounceFloat 6s ease-in-out infinite;
+}
+
+.animate-bounce-float-delay {
+  animation: bounceFloatDelay 8s ease-in-out infinite;
 }

@@ -1,4 +1,4 @@
-import { GraduationCap, MapPin, Award, CheckCircle2, ShieldAlert, Cpu, HeartHandshake, FileText, ArrowUpRight } from 'lucide-react';
+import { GraduationCap, MapPin, Award, CheckCircle2, Cpu, HeartHandshake, ArrowUpRight, Sparkles } from 'lucide-react';
 import { personalInfo } from '../data/portfolioData';
 
 export default function About() {
@@ -37,7 +37,11 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 relative bg-white border-y border-slate-200/60">
+    <section id="about" className="py-20 relative bg-white/70 backdrop-blur-md border-y border-slate-200/60">
+      
+      {/* Background Soft Glow */}
+      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[140px] pointer-events-none -z-10" />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -54,23 +58,54 @@ export default function About() {
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: Story & Background */}
+          {/* Left Column: Portrait Photo with Cinematic Frame & Badges */}
+          <div className="lg:col-span-5 flex justify-center">
+            <div className="relative group w-full max-w-[340px]">
+              
+              {/* Cinematic Glow Behind Image */}
+              <div className="absolute -inset-2 bg-gradient-to-tr from-indigo-500/30 via-purple-500/25 to-emerald-500/30 rounded-3xl blur-lg group-hover:blur-xl transition-all" />
+
+              <div className="relative rounded-3xl p-3 bg-white/90 border border-slate-200 shadow-xl overflow-hidden">
+                <div className="w-full h-[380px] rounded-2xl overflow-hidden bg-slate-100">
+                  <img
+                    src="/kartik-portrait.jpg"
+                    alt="Kartik Chandel Profile"
+                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+
+                {/* Floating Location Overlay */}
+                <div className="absolute bottom-6 left-6 right-6 p-3 rounded-xl bg-slate-900/85 backdrop-blur-md text-white text-xs flex items-center justify-between shadow-lg">
+                  <div className="flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-emerald-400" />
+                    <span className="font-semibold">Bilaspur, HP</span>
+                  </div>
+                  <span className="text-[11px] text-slate-300 font-medium">India</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          {/* Right Column: Story & Background */}
           <div className="lg:col-span-7 space-y-6 text-slate-600 text-base leading-relaxed">
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 space-y-4">
+            <div className="p-6 rounded-2xl bg-white/90 border border-slate-200/90 shadow-soft-sm space-y-4">
               <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
+                <Sparkles className="w-5 h-5 text-indigo-600" />
                 My Story & Background
               </h3>
               <p>
-                Originally from the serene town of <strong className="text-slate-800">Bilaspur, Himachal Pradesh</strong>, 
-                I am currently pursuing my technical education at <strong className="text-slate-800">{personalInfo.education.institution}</strong>. 
-                My passion lies at the intersection of product engineering and quality assurance.
+                Originally from the scenic hills of <strong className="text-slate-800">Bilaspur, Himachal Pradesh</strong>, 
+                I am currently pursuing my technical degree at <strong className="text-slate-800">{personalInfo.education.institution}</strong>. 
+                My focus centers on high-impact software engineering and test automation.
               </p>
               <p>
-                As a <strong className="text-slate-800">Full Stack Developer & QA Intern</strong>, I spend my days building dynamic web applications 
-                and mobile solutions, while simultaneously writing test automation suites with <strong className="text-slate-800">Playwright</strong>. 
-                This dual discipline allows me to write resilient, maintainable code because I understand how software breaks in production.
+                As an active <strong className="text-slate-800">Full Stack Developer & QA Intern</strong>, I balance both worlds: 
+                engineering robust full-stack web and mobile apps with <strong className="text-slate-800">React, Flutter, and Node.js</strong>, 
+                while simultaneously writing comprehensive automated E2E tests using <strong className="text-slate-800">Playwright</strong>. 
+                Knowing how software breaks in production enables me to design cleaner, resilient architectures.
               </p>
             </div>
 
@@ -92,14 +127,14 @@ export default function About() {
                   <MapPin className="w-5 h-5" />
                 </div>
                 <h4 className="text-sm font-bold text-slate-900">Bilaspur, Himachal Pradesh</h4>
-                <p className="text-xs text-slate-500 mt-1">Roots & Hometown, India</p>
+                <p className="text-xs text-slate-500 mt-1">Hometown & Roots, India</p>
                 <div className="mt-3 text-xs font-semibold text-emerald-600 inline-flex items-center gap-1">
                   Remote & Onsite Ready
                 </div>
               </div>
             </div>
 
-            {/* Quick Resume & Direct Contact CTA */}
+            {/* Inquire on WhatsApp & Email */}
             <div className="flex flex-wrap items-center gap-4 pt-2">
               <a
                 href={personalInfo.contact.whatsapp}
@@ -121,41 +156,41 @@ export default function About() {
 
           </div>
 
-          {/* Right Column: Strengths & Highlights */}
-          <div className="lg:col-span-5 space-y-4">
-            <h3 className="text-lg font-bold text-slate-900 px-1">
-              Key Engineering Superpowers
-            </h3>
+        </div>
 
-            <div className="space-y-3.5">
-              {highlights.map((item) => {
-                const IconComponent = item.icon;
-                return (
-                  <div
-                    key={item.title}
-                    className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-soft-sm hover:shadow-soft transition-all hover:-translate-y-0.5 flex gap-4 items-start"
-                  >
-                    <div className={`p-2.5 rounded-xl border shrink-0 ${item.color}`}>
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
-                      <p className="text-xs text-slate-600 mt-1 leading-relaxed">{item.desc}</p>
-                    </div>
+        {/* Strengths & Highlights Grid */}
+        <div className="mt-14 space-y-4">
+          <h3 className="text-lg font-bold text-slate-900 text-center">
+            Core Engineering Superpowers
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {highlights.map((item) => {
+              const IconComponent = item.icon;
+              return (
+                <div
+                  key={item.title}
+                  className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-soft-sm hover:shadow-soft transition-all hover:-translate-y-1 flex flex-col justify-between"
+                >
+                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-3 ${item.color}`}>
+                    <IconComponent className="w-5 h-5" />
                   </div>
-                );
-              })}
-            </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
+                    <p className="text-xs text-slate-600 mt-2 leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-
         </div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-slate-200/70">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 pt-12 border-t border-slate-200/70">
           {stats.map((stat) => (
             <div
               key={stat.label}
-              className="p-5 rounded-2xl bg-slate-50/70 border border-slate-200/80 text-center hover:bg-white transition-all shadow-soft-sm"
+              className="p-5 rounded-2xl bg-white border border-slate-200/80 text-center hover:bg-slate-50 transition-all shadow-soft-sm"
             >
               <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-1 text-gradient-indigo">
                 {stat.number}
