@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { ArrowDown, ArrowUpRight, MapPin, GraduationCap, ShieldCheck, Code2, Sparkles, Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
-import Hero3DCanvas from './Hero3DCanvas';
-import TiltCard from './TiltCard';
+import HeroCutoutDisplay from './HeroCutoutDisplay';
 import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsAppIcon } from './Icons';
 
 const roles = [
@@ -163,83 +162,14 @@ export default function Hero() {
 
           </motion.div>
 
-          {/* Right Column: Hero Portrait with Futuristic Orbit & 3D Tilt */}
+          {/* Right Column: Hero Transparent Body Cutout with Orbiting Cyber Animations */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9, x: 30 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.9, ease: 'easeOut', delay: 0.1 }}
-            className="lg:col-span-5 relative flex items-center justify-center min-h-[500px]"
+            className="lg:col-span-5 relative flex items-center justify-center min-h-[520px]"
           >
-            {/* 3D Futuristic Cyber Orbital Rings (Surrounding the Card) */}
-            <div className="absolute inset-0 w-full h-full pointer-events-none -z-0">
-              <Hero3DCanvas />
-            </div>
-
-            {/* Interactive 3D Tilt Portrait Card */}
-            <TiltCard maxTilt={12} scale={1.03} className="relative z-10 w-full max-w-[340px] sm:max-w-[370px]">
-              
-              {/* Outer Glowing Glass Frame */}
-              <div className="relative rounded-3xl p-2.5 bg-white/85 backdrop-blur-xl border border-white/60 shadow-cinematic overflow-hidden">
-                
-                {/* Image Container with Precision Crop */}
-                <div className="relative w-full h-[420px] rounded-2xl overflow-hidden bg-slate-900 shadow-inner">
-                  <img
-                    src="/kartik-portrait.jpg"
-                    alt="Kartik Chandel"
-                    className="w-full h-full object-cover object-top"
-                  />
-                  
-                  {/* Subtle Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent pointer-events-none" />
-
-                  {/* Top-Right Active Status Badge */}
-                  <div className="absolute top-3.5 right-3.5 flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/85 backdrop-blur-md border border-white/20 text-white text-[11px] font-bold shadow-lg">
-                    <span className="relative flex h-2 w-2 shrink-0">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,1)]" />
-                    </span>
-                    <span>Live & Active</span>
-                  </div>
-
-                  {/* Bottom Info Bar inside image */}
-                  <div className="absolute bottom-3 left-3 right-3 p-3 rounded-xl bg-white/90 backdrop-blur-md border border-white/40 shadow-md">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-xs font-bold text-slate-900">Kartik Chandel</div>
-                        <div className="text-[10px] text-slate-500 font-medium">Full Stack & QA Engineer</div>
-                      </div>
-                      <div className="px-2 py-1 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-700 text-[10px] font-bold">
-                        Bilaspur, HP
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Floating Interactive Micro-Badges */}
-                <div className="absolute -bottom-3 -left-3 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl px-3.5 py-2 shadow-soft-xl flex items-center gap-2 z-20">
-                  <div className="w-7 h-7 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center font-bold text-xs">
-                    ⚡
-                  </div>
-                  <div className="text-left">
-                    <div className="text-[10px] font-bold text-slate-900">Full Stack Dev</div>
-                    <div className="text-[9px] text-slate-500">React • Flutter • Node</div>
-                  </div>
-                </div>
-
-                <div className="absolute -top-3 -right-3 bg-white/95 backdrop-blur-md border border-slate-200/90 rounded-2xl px-3.5 py-2 shadow-soft-xl flex items-center gap-2 z-20">
-                  <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xs">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                  </div>
-                  <div className="text-left">
-                    <div className="text-[10px] font-bold text-slate-900">QA Automated</div>
-                    <div className="text-[9px] text-slate-500">Playwright E2E</div>
-                  </div>
-                </div>
-
-              </div>
-
-            </TiltCard>
-
+            <HeroCutoutDisplay />
           </motion.div>
 
         </div>
