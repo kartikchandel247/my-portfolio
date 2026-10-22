@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { ArrowRight, Code2, ShieldCheck, Sparkles, Smartphone, Bot, Cpu, CheckCircle2, MessageSquare, Mail, Phone, ExternalLink } from 'lucide-react';
 import Hero from './Hero';
 import TiltCard from './TiltCard';
@@ -6,6 +8,13 @@ import ScrollPopStats from './ScrollPopStats';
 import { personalInfo, projects, services } from '../data/portfolioData';
 
 export default function HomeOverview({ onNavigate }) {
+  const aboutSnapshotRef = useRef(null);
+  const isAboutInView = useInView(aboutSnapshotRef, {
+    once: false,
+    amount: 0.25,
+    margin: '-40px 0px -40px 0px',
+  });
+
   const quickStats = [
     { number: '4+', label: 'Flagship Projects', detail: 'Mobile, Web, CRM, AI' },
     { number: '100+', label: 'QA Test Scenarios', detail: 'Automated & Manual Probes' },
@@ -38,40 +47,117 @@ export default function HomeOverview({ onNavigate }) {
         <ScrollPopStats stats={quickStats} />
       </div>
 
-      {/* 3. Short About Snapshot (Brief 2-Sentence Bio + Teaser Highlights) */}
+      {/* 3. Short About Snapshot (Dynamic Directional Motion on Every Scroll) */}
       <section className="relative py-8 overflow-hidden">
         <SectionBackground variant="about" showTopDivider={false} showBottomDivider={false} />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="p-6 sm:p-10 rounded-3xl bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-soft-sm">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div ref={aboutSnapshotRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial="hidden"
+            animate={isAboutInView ? 'visible' : 'hidden'}
+            variants={{
+              hidden: { opacity: 0, y: 30, scale: 0.98 },
+              visible: {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+              },
+            }}
+            className="p-6 sm:p-10 rounded-3xl bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-soft-sm relative overflow-hidden"
+          >
+            {/* Subtle light sweep across the card */}
+            <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-indigo-500/10 to-transparent z-0 rounded-[inherit]" />
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
               
-              <div className="lg:col-span-7 space-y-4 text-left">
-                <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200/70">
+              {/* Big Card Content: Comes from LEFT to RIGHT and sets into position */}
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, x: -85 },
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    transition: {
+                      type: 'spring',
+                      stiffness: 220,
+                      damping: 22,
+                      mass: 0.85,
+                    },
+                  },
+                }}
+                className="lg:col-span-7 space-y-4 text-left will-change-transform"
+              >
+                <motion.span
+                  variants={{
+                    hidden: { opacity: 0, x: -30 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+                  }}
+                  className="inline-block text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200/70"
+                >
                   About Overview
-                </span>
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                </motion.span>
+
+                <motion.h2
+                  variants={{
+                    hidden: { opacity: 0, x: -50 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.45, delay: 0.05 } },
+                  }}
+                  className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
+                >
                   Developer Mindset. <span className="text-gradient-indigo">QA Precision.</span>
-                </h2>
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                </motion.h2>
+
+                <motion.p
+                  variants={{
+                    hidden: { opacity: 0, x: -40 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.45, delay: 0.1 } },
+                  }}
+                  className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal"
+                >
                   Based in Bilaspur, HP, and studying at {personalInfo.education.institution}. 
                   I bridge modern web & mobile engineering (React, Flutter, Node.js) with deep automated test coverage using Playwright to ensure zero regressions in production.
-                </p>
+                </motion.p>
 
-                <div className="pt-2">
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, x: -35, scale: 0.95 },
+                    visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.45, delay: 0.15 } },
+                  }}
+                  className="pt-2"
+                >
                   <button
                     onClick={() => onNavigate('about')}
-                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/80 px-5 py-3 rounded-xl transition-all border border-indigo-200 shadow-2xs group cursor-pointer"
+                    className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/80 px-5 py-3 rounded-xl transition-all border border-indigo-200 shadow-2xs group cursor-pointer hover:shadow-md hover:-translate-y-0.5"
                   >
                     <span>Read Full Story & Engineering Superpowers</span>
                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </button>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
-              {/* 2 Quick Superpower Teasers */}
+              {/* 2 Quick Superpower Teasers: Minimilistic cards come from UP and DOWN and lock into position */}
               <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3.5">
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3 hover:border-indigo-300 transition-colors">
+                
+                {/* Top Mini Card: Comes from UP (Sliding down into position) */}
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: -75, scale: 0.88 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        type: 'spring',
+                        stiffness: 240,
+                        damping: 20,
+                        delay: 0.12,
+                      },
+                    },
+                  }}
+                  whileHover={{ y: -4, scale: 1.02, transition: { duration: 0.15 } }}
+                  className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3 hover:border-indigo-300 hover:bg-white hover:shadow-md hover:shadow-indigo-500/10 transition-colors duration-200 will-change-transform cursor-pointer"
+                >
                   <div className="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 mt-0.5">
                     <Cpu className="w-4 h-4" />
                   </div>
@@ -79,9 +165,27 @@ export default function HomeOverview({ onNavigate }) {
                     <h4 className="text-xs font-bold text-slate-900">Full Stack & Mobile</h4>
                     <p className="text-[11px] text-slate-600 mt-0.5">React, Flutter, Node.js APIs & Supabase backends.</p>
                   </div>
-                </div>
+                </motion.div>
 
-                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3 hover:border-emerald-300 transition-colors">
+                {/* Bottom Mini Card: Comes from DOWN (Sliding up into position) */}
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: 75, scale: 0.88 },
+                    visible: {
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
+                      transition: {
+                        type: 'spring',
+                        stiffness: 240,
+                        damping: 20,
+                        delay: 0.22,
+                      },
+                    },
+                  }}
+                  whileHover={{ y: -4, scale: 1.02, transition: { duration: 0.15 } }}
+                  className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3 hover:border-emerald-300 hover:bg-white hover:shadow-md hover:shadow-emerald-500/10 transition-colors duration-200 will-change-transform cursor-pointer"
+                >
                   <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
                     <CheckCircle2 className="w-4 h-4" />
                   </div>
@@ -89,11 +193,12 @@ export default function HomeOverview({ onNavigate }) {
                     <h4 className="text-xs font-bold text-slate-900">Automated QA Edge Probing</h4>
                     <p className="text-[11px] text-slate-600 mt-0.5">Playwright E2E suites, boundary probing & visual reports.</p>
                   </div>
-                </div>
+                </motion.div>
+
               </div>
 
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
