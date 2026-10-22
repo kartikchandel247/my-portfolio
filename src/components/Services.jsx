@@ -2,6 +2,7 @@ import { Layout, Layers, Server, ShieldCheck, ArrowRight, CheckCircle2 } from 'l
 import { motion } from 'framer-motion';
 import { services } from '../data/portfolioData';
 import TiltCard from './TiltCard';
+import SectionBackground from './SectionBackground';
 
 const iconMap = {
   Layout: Layout,
@@ -14,8 +15,8 @@ export default function Services() {
   return (
     <section id="services" className="py-24 relative overflow-hidden">
       
-      {/* Background Soft Glow */}
-      <div className="absolute top-1/3 -right-32 w-[600px] h-[600px] bg-cyan-100/40 rounded-full blur-[150px] pointer-events-none -z-10" />
+      {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
+      <SectionBackground variant="services" showTopDivider={true} showBottomDivider={true} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 import { personalInfo } from '../data/portfolioData';
 import TiltCard from './TiltCard';
+import SectionBackground from './SectionBackground';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -43,10 +44,10 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative bg-white/80 backdrop-blur-md border-t border-slate-200/60 overflow-hidden">
+    <section id="contact" className="py-24 relative overflow-hidden">
       
-      {/* Background Neon Spotlight Glow */}
-      <div className="absolute top-1/2 right-10 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-100/50 to-pink-100/40 rounded-full blur-[160px] pointer-events-none -z-10" />
+      {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
+      <SectionBackground variant="contact" showTopDivider={true} showBottomDivider={false} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         

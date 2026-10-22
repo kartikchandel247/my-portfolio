@@ -2,6 +2,7 @@ import { Code2, Smartphone, Database, ShieldCheck, CheckCircle } from 'lucide-re
 import { motion } from 'framer-motion';
 import { skills } from '../data/portfolioData';
 import TiltCard from './TiltCard';
+import SectionBackground from './SectionBackground';
 
 const categoryIcons = {
   'Frontend Development': Code2,
@@ -14,8 +15,8 @@ export default function TechStack() {
   return (
     <section id="skills" className="py-24 relative overflow-hidden">
       
-      {/* Background Soft Glow */}
-      <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-emerald-100/40 rounded-full blur-[160px] pointer-events-none -z-10" />
+      {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
+      <SectionBackground variant="skills" showTopDivider={true} showBottomDivider={true} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         

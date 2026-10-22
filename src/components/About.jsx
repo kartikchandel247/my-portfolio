@@ -2,6 +2,7 @@ import { GraduationCap, MapPin, Award, CheckCircle2, Cpu, HeartHandshake, ArrowU
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
 import TiltCard from './TiltCard';
+import SectionBackground from './SectionBackground';
 
 export default function About() {
   const highlights = [
@@ -67,10 +68,10 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 relative bg-white/70 backdrop-blur-md border-y border-slate-200/60 overflow-hidden">
+    <section id="about" className="py-24 relative overflow-hidden">
       
-      {/* Background Soft Glow */}
-      <div className="absolute top-1/2 left-0 w-[550px] h-[550px] bg-indigo-100/40 rounded-full blur-[140px] pointer-events-none -z-10" />
+      {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
+      <SectionBackground variant="about" showTopDivider={true} showBottomDivider={true} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         

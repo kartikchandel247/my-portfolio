@@ -3,6 +3,7 @@ import { ArrowDown, ArrowUpRight, MapPin, GraduationCap, ShieldCheck, Code2, Spa
 import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
 import HeroCutoutDisplay from './HeroCutoutDisplay';
+import SectionBackground from './SectionBackground';
 import { GithubIcon, LinkedinIcon, InstagramIcon, WhatsAppIcon } from './Icons';
 
 const roles = [
@@ -42,9 +43,8 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-[96vh] flex items-center pt-24 pb-16 overflow-hidden">
       
-      {/* Background Animated Neon Spotlights */}
-      <div className="absolute top-10 left-1/4 -translate-x-1/2 w-[700px] h-[480px] bg-gradient-to-tr from-indigo-500/20 via-purple-500/20 to-pink-500/15 blur-[120px] rounded-full pointer-events-none -z-10 animate-pulse-slow" />
-      <div className="absolute bottom-10 right-10 w-[600px] h-[450px] bg-gradient-to-br from-emerald-500/20 via-teal-500/15 to-cyan-500/20 blur-[130px] rounded-full pointer-events-none -z-10 animate-pulse-slow-reverse" />
+      {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
+      <SectionBackground variant="hero" showTopDivider={false} showBottomDivider={true} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">

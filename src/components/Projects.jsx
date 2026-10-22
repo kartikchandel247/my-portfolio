@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { projects } from '../data/portfolioData';
 import { GithubIcon } from './Icons';
 import TiltCard from './TiltCard';
+import SectionBackground from './SectionBackground';
 
 const categories = ['All', 'Mobile', 'Web', 'AI & System', 'Enterprise / CRM', 'QA & Testing'];
 
@@ -15,10 +16,10 @@ export default function Projects() {
     : projects.filter((p) => p.category.toLowerCase().includes(selectedCategory.toLowerCase()) || selectedCategory.toLowerCase().includes(p.category.toLowerCase()));
 
   return (
-    <section id="projects" className="py-24 relative bg-white/80 backdrop-blur-md border-y border-slate-200/60 overflow-hidden">
+    <section id="projects" className="py-24 relative overflow-hidden">
       
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 w-[700px] h-[700px] bg-indigo-100/40 rounded-full blur-[160px] pointer-events-none -z-10" />
+      {/* Moving Atmosphere Aurora & Cyber Mesh Background */}
+      <SectionBackground variant="projects" showTopDivider={true} showBottomDivider={true} />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
