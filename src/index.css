@@ -184,3 +184,146 @@
 .animate-bounce-float-delay {
   animation: bounceFloatDelay 8s ease-in-out infinite;
 }
+
+/* Staggered Organic Card Floating Levitation Animations */
+@keyframes cardFloat1 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes cardFloat2 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-11px);
+  }
+}
+
+@keyframes cardFloat3 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes cardFloat4 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-card-float-1 {
+  animation: cardFloat1 3.4s ease-in-out infinite;
+}
+
+.animate-card-float-2 {
+  animation: cardFloat2 4.1s ease-in-out infinite 0.3s;
+}
+
+.animate-card-float-3 {
+  animation: cardFloat3 3.7s ease-in-out infinite 0.6s;
+}
+
+.animate-card-float-4 {
+  animation: cardFloat4 4.4s ease-in-out infinite 0.9s;
+}
+
+/* Pause float animation when hovering so interaction is crisp */
+.pause-on-hover:hover {
+  animation-play-state: paused;
+}
+
+/* Periodic Cinematic Light Beam Sweep Across Cards */
+@keyframes beamSweep {
+  0% {
+    transform: translateX(-160%) skewX(-20deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.65;
+  }
+  45% {
+    transform: translateX(260%) skewX(-20deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(260%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+.animate-beam-sweep {
+  animation: beamSweep 4.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Card Glow Breathing Pulses for Core Superpowers */
+@keyframes glowPulseIndigo {
+  0%, 100% {
+    box-shadow: 0 4px 18px -2px rgba(99, 102, 241, 0.12), 0 0 0 1px rgba(99, 102, 241, 0.16);
+  }
+  50% {
+    box-shadow: 0 14px 34px -2px rgba(99, 102, 241, 0.28), 0 0 0 1px rgba(99, 102, 241, 0.42);
+  }
+}
+
+@keyframes glowPulseEmerald {
+  0%, 100% {
+    box-shadow: 0 4px 18px -2px rgba(16, 185, 129, 0.12), 0 0 0 1px rgba(16, 185, 129, 0.16);
+  }
+  50% {
+    box-shadow: 0 14px 34px -2px rgba(16, 185, 129, 0.28), 0 0 0 1px rgba(16, 185, 129, 0.42);
+  }
+}
+
+@keyframes glowPulseViolet {
+  0%, 100% {
+    box-shadow: 0 4px 18px -2px rgba(168, 85, 247, 0.12), 0 0 0 1px rgba(168, 85, 247, 0.16);
+  }
+  50% {
+    box-shadow: 0 14px 34px -2px rgba(168, 85, 247, 0.28), 0 0 0 1px rgba(168, 85, 247, 0.42);
+  }
+}
+
+@keyframes glowPulseCyan {
+  0%, 100% {
+    box-shadow: 0 4px 18px -2px rgba(14, 165, 233, 0.12), 0 0 0 1px rgba(14, 165, 233, 0.16);
+  }
+  50% {
+    box-shadow: 0 14px 34px -2px rgba(14, 165, 233, 0.28), 0 0 0 1px rgba(14, 165, 233, 0.42);
+  }
+}
+
+.glow-card-indigo {
+  animation: glowPulseIndigo 3.4s ease-in-out infinite;
+}
+
+.glow-card-emerald {
+  animation: glowPulseEmerald 3.8s ease-in-out infinite 0.4s;
+}
+
+.glow-card-violet {
+  animation: glowPulseViolet 4.1s ease-in-out infinite 0.8s;
+}
+
+.glow-card-cyan {
+  animation: glowPulseCyan 3.6s ease-in-out infinite 1.2s;
+}
+
+/* GPU Hardware Acceleration Utilities */
+.hardware-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+

@@ -22,12 +22,12 @@ export default function Projects() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Zoom-In */}
+        {/* Section Header with Fast Entrance */}
         <motion.div
-          initial={{ opacity: 0, y: -25 }}
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
           className="text-center max-w-3xl mx-auto space-y-3 mb-12"
         >
           <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
@@ -41,19 +41,19 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Filter Tabs */}
+        {/* Filter Tabs with Fast Click Switch */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.3 }}
           className="flex flex-wrap items-center justify-center gap-2 mb-12"
         >
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedCategory(category)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 ${
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 ${
                 selectedCategory === category
                   ? 'bg-slate-900 text-white shadow-md shadow-slate-900/15 scale-105'
                   : 'bg-slate-100 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600'
@@ -64,34 +64,42 @@ export default function Projects() {
           ))}
         </motion.div>
 
-        {/* Projects Grid with Staggered Rise & 3D Tilt */}
+        {/* Projects Grid with Ultra-Fast Staggered Rise & 3D Tilt */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => {
               const isPrivate = project.isPrivate;
+              const projectFloats = ['animate-card-float-1', 'animate-card-float-3', 'animate-card-float-2', 'animate-card-float-4'];
+              const floatClass = projectFloats[index % projectFloats.length];
 
               return (
                 <motion.div
                   key={project.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.92, y: 30 }}
+                  initial={{ opacity: 0, scale: 0.95, y: 15 }}
                   whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.55, delay: index * 0.08, ease: 'easeOut' }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  viewport={{ once: true, amount: 0.05 }}
+                  transition={{ duration: 0.22, delay: index * 0.03, ease: 'easeOut' }}
+                  className="h-full"
                 >
-                  <TiltCard
-                    maxTilt={9}
-                    scale={1.02}
-                    className="group relative rounded-3xl bg-slate-50/90 border border-slate-200/90 hover:border-indigo-300 p-7 flex flex-col justify-between transition-all duration-300 hover:shadow-soft-xl overflow-hidden h-full"
-                  >
-                    {/* Background soft glow on hover */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/70 rounded-full blur-3xl -z-10 group-hover:scale-125 transition-transform" />
+                  <div className={`${floatClass} pause-on-hover h-full`}>
+                    <TiltCard
+                      maxTilt={10}
+                      scale={1.03}
+                      glareColor="rgba(99, 102, 241, 0.35)"
+                      className="group relative rounded-3xl bg-slate-50/90 border border-slate-200/90 hover:border-indigo-400 p-7 flex flex-col justify-between transition-all duration-150 hover:shadow-2xl overflow-hidden h-full cursor-pointer"
+                    >
+                      {/* Periodic Cinematic Light Beam Sweep */}
+                      <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-white/50 to-transparent z-10 rounded-[inherit]" />
 
-                    <div>
-                      {/* Category & Badge Row */}
-                      <div className="flex items-center justify-between gap-2 mb-4">
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-700 shadow-soft-sm">
+                      {/* Background soft glow on hover */}
+                      <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-50/70 rounded-full blur-3xl -z-10 group-hover:scale-150 transition-transform duration-200" />
+
+                      <div>
+                        {/* Category & Badge Row */}
+                        <div className="flex items-center justify-between gap-2 mb-4">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-700 shadow-soft-sm">
                           {project.category === 'Mobile' && <Smartphone className="w-3.5 h-3.5 text-indigo-500" />}
                           {project.category === 'Web' && <Globe className="w-3.5 h-3.5 text-blue-500" />}
                           {project.category === 'AI & System' && <Bot className="w-3.5 h-3.5 text-purple-500" />}
@@ -120,7 +128,7 @@ export default function Projects() {
                       </div>
 
                       {/* Title & Subtitle */}
-                      <h3 className="text-2xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                      <h3 className="text-2xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors duration-150">
                         {project.title}
                       </h3>
                       <p className="text-xs font-semibold text-slate-500 mt-1 mb-4">
@@ -133,7 +141,7 @@ export default function Projects() {
                       </p>
 
                       {/* Key Highlights */}
-                      <div className="space-y-2 mb-6 bg-white/90 p-4 rounded-2xl border border-slate-200/80 shadow-sm">
+                      <div className="space-y-2 mb-6 bg-white/90 p-4 rounded-2xl border border-slate-200/80 shadow-sm group-hover:border-indigo-200 transition-colors duration-150">
                         <span className="text-[11px] font-bold uppercase tracking-wider text-slate-600 block">
                           Architecture & Key Highlights:
                         </span>
@@ -152,7 +160,7 @@ export default function Projects() {
                         {project.techStack.map((tech) => (
                           <span
                             key={tech}
-                            className="px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-200/80 text-slate-800"
+                            className="px-2.5 py-1 text-xs font-bold rounded-lg bg-slate-200/80 text-slate-800 group-hover:bg-indigo-50 group-hover:text-indigo-700 transition-colors duration-150"
                           >
                             {tech}
                           </span>
@@ -174,7 +182,7 @@ export default function Projects() {
                               href={project.githubUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 px-3.5 py-2 rounded-xl transition-all shadow-soft-sm"
+                              className="inline-flex items-center gap-1.5 text-xs font-bold text-slate-700 hover:text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 px-3.5 py-2 rounded-xl transition-all shadow-soft-sm hover:-translate-y-0.5"
                             >
                               <GithubIcon className="w-3.5 h-3.5" />
                               GitHub Code
@@ -186,7 +194,7 @@ export default function Projects() {
                               href={project.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-all shadow-md shadow-indigo-500/20"
+                              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-indigo-600 hover:bg-indigo-700 px-3.5 py-2 rounded-xl transition-all shadow-md shadow-indigo-500/20 hover:-translate-y-0.5"
                             >
                               <Globe className="w-3.5 h-3.5" />
                               Visit Live App
@@ -198,18 +206,19 @@ export default function Projects() {
                     </div>
 
                   </TiltCard>
-                </motion.div>
-              );
+                </div>
+              </motion.div>
+            );
             })}
           </AnimatePresence>
         </div>
 
-        {/* GitHub Account Auto-Inspection Callout with Spring Slide-Up */}
+        {/* GitHub Account Auto-Inspection Callout with Fast Slide-Up */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.35 }}
           className="mt-14 p-6 rounded-3xl bg-gradient-to-r from-slate-900 to-indigo-950 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl"
         >
           <div className="space-y-1 text-center md:text-left">
@@ -225,7 +234,7 @@ export default function Projects() {
             href="https://github.com/kartikchandel247"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-slate-900 font-bold text-xs sm:text-sm hover:bg-indigo-50 transition-all shrink-0 shadow-lg"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-slate-900 font-bold text-xs sm:text-sm hover:bg-indigo-50 transition-all shrink-0 shadow-lg hover:-translate-y-0.5"
           >
             <span>Visit @kartikchandel247</span>
             <ExternalLink className="w-4 h-4" />

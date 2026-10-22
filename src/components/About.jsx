@@ -9,25 +9,53 @@ export default function About() {
       title: 'Full Stack Web & Mobile Engineering',
       desc: 'Building responsive web interfaces with React & Tailwind CSS, cross-platform mobile apps with Flutter, and server-side APIs with Node.js and Supabase.',
       icon: Cpu,
-      color: 'text-indigo-600 bg-indigo-50 border-indigo-200',
+      color: 'text-indigo-600 bg-indigo-50 border-indigo-200 group-hover:bg-indigo-600 group-hover:text-white',
+      borderGlow: 'hover:border-indigo-400 hover:shadow-[0_16px_36px_rgba(99,102,241,0.22)]',
+      accentGlow: 'from-indigo-500/15 via-purple-500/10 to-transparent',
+      floatClass: 'animate-card-float-1',
+      glowClass: 'glow-card-indigo',
+      glareColor: 'rgba(99, 102, 241, 0.4)',
+      badge: 'React & Flutter',
+      badgeColor: 'text-indigo-600 bg-indigo-50 border-indigo-200/80',
     },
     {
       title: 'QA Automation & Edge Probing',
       desc: 'Specialized in Playwright E2E automation scripts, boundary testing, cascade form verification, and generating automated visual QA audit reports.',
       icon: CheckCircle2,
-      color: 'text-emerald-600 bg-emerald-50 border-emerald-200',
+      color: 'text-emerald-600 bg-emerald-50 border-emerald-200 group-hover:bg-emerald-600 group-hover:text-white',
+      borderGlow: 'hover:border-emerald-400 hover:shadow-[0_16px_36px_rgba(16,185,129,0.22)]',
+      accentGlow: 'from-emerald-500/15 via-teal-500/10 to-transparent',
+      floatClass: 'animate-card-float-2',
+      glowClass: 'glow-card-emerald',
+      glareColor: 'rgba(16, 185, 129, 0.4)',
+      badge: 'Playwright E2E',
+      badgeColor: 'text-emerald-600 bg-emerald-50 border-emerald-200/80',
     },
     {
       title: 'Continuous Innovation & AI',
       desc: 'Hands-on experience designing autonomous AI agents (KIRA Jarvis), integrating voice/NLP workflows, and containerizing backends with Docker.',
       icon: Award,
-      color: 'text-violet-600 bg-violet-50 border-violet-200',
+      color: 'text-violet-600 bg-violet-50 border-violet-200 group-hover:bg-violet-600 group-hover:text-white',
+      borderGlow: 'hover:border-violet-400 hover:shadow-[0_16px_36px_rgba(168,85,247,0.22)]',
+      accentGlow: 'from-violet-500/15 via-pink-500/10 to-transparent',
+      floatClass: 'animate-card-float-3',
+      glowClass: 'glow-card-violet',
+      glareColor: 'rgba(168, 85, 247, 0.4)',
+      badge: 'AI & Systems',
+      badgeColor: 'text-violet-600 bg-violet-50 border-violet-200/80',
     },
     {
       title: 'Collaborative Problem Solver',
       desc: 'Clear communicator with a proactive mindset. Focused on shipping clean code on time, meeting business milestones, and customer satisfaction.',
       icon: HeartHandshake,
-      color: 'text-sky-600 bg-sky-50 border-sky-200',
+      color: 'text-sky-600 bg-sky-50 border-sky-200 group-hover:bg-sky-600 group-hover:text-white',
+      borderGlow: 'hover:border-sky-400 hover:shadow-[0_16px_36px_rgba(14,165,233,0.22)]',
+      accentGlow: 'from-sky-500/15 via-cyan-500/10 to-transparent',
+      floatClass: 'animate-card-float-4',
+      glowClass: 'glow-card-cyan',
+      glareColor: 'rgba(14, 165, 233, 0.4)',
+      badge: 'Agile Delivery',
+      badgeColor: 'text-sky-600 bg-sky-50 border-sky-200/80',
     },
   ];
 
@@ -46,12 +74,12 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with Zoom-In Entrance */}
+        {/* Section Header with Fast Entrance */}
         <motion.div
-          initial={{ opacity: 0, y: -25 }}
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
           className="text-center max-w-3xl mx-auto space-y-3 mb-16"
         >
           <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
@@ -68,12 +96,12 @@ export default function About() {
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: Portrait Photo with 3D Tilt & Slide from Left */}
+          {/* Left Column: Portrait Photo with 3D Tilt */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -35 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
             className="lg:col-span-5 flex justify-center"
           >
             <TiltCard maxTilt={10} scale={1.03} className="relative w-full max-w-[340px]">
@@ -86,7 +114,7 @@ export default function About() {
                   <img
                     src="/kartik-portrait.jpg"
                     alt="Kartik Chandel Profile"
-                    className="w-full h-full object-cover object-top transition-transform duration-500"
+                    className="w-full h-full object-cover object-top transition-transform duration-300"
                   />
                 </div>
 
@@ -103,12 +131,12 @@ export default function About() {
             </TiltCard>
           </motion.div>
 
-          {/* Right Column: Story & Background (Slide in from Right) */}
+          {/* Right Column: Story & Background (Fast Slide from Right) */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 35 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
             className="lg:col-span-7 space-y-6 text-slate-600 text-base leading-relaxed"
           >
             <div className="p-6 rounded-2xl bg-white/90 border border-slate-200/90 shadow-soft-sm space-y-4">
@@ -129,9 +157,9 @@ export default function About() {
               </p>
             </div>
 
-            {/* Academic & Internship Cards with Micro-Tilt */}
+            {/* Academic & Internship Cards with Fast Response */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <TiltCard maxTilt={8} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm">
+              <TiltCard maxTilt={8} scale={1.03} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm hover:border-indigo-300 transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 mb-3">
                   <GraduationCap className="w-5 h-5" />
                 </div>
@@ -142,7 +170,7 @@ export default function About() {
                 </div>
               </TiltCard>
 
-              <TiltCard maxTilt={8} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm">
+              <TiltCard maxTilt={8} scale={1.03} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm hover:border-emerald-300 transition-colors">
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 mb-3">
                   <MapPin className="w-5 h-5" />
                 </div>
@@ -160,7 +188,7 @@ export default function About() {
                 href={personalInfo.contact.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 px-5 py-3 rounded-xl transition-all shadow-sm"
+                className="inline-flex items-center gap-2 text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 px-5 py-3 rounded-xl transition-all shadow-sm hover:-translate-y-0.5"
               >
                 Inquire on WhatsApp
                 <ArrowUpRight className="w-4 h-4" />
@@ -168,7 +196,7 @@ export default function About() {
 
               <a
                 href={`mailto:${personalInfo.contact.email}`}
-                className="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100/70 px-5 py-3 rounded-xl transition-all border border-indigo-200/80 shadow-sm"
+                className="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100/70 px-5 py-3 rounded-xl transition-all border border-indigo-200/80 shadow-sm hover:-translate-y-0.5"
               >
                 Send Email ({personalInfo.contact.email})
               </a>
@@ -178,11 +206,17 @@ export default function About() {
 
         </div>
 
-        {/* Strengths & Highlights Grid (Staggered Zoom-In) */}
+        {/* Core Engineering Superpowers: Fast Staggered Motion & Floating Levitation */}
         <div className="mt-16 space-y-4">
-          <h3 className="text-lg font-bold text-slate-900 text-center">
+          <motion.h3
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
+            transition={{ duration: 0.3 }}
+            className="text-lg font-extrabold text-slate-900 text-center"
+          >
             Core Engineering Superpowers
-          </h3>
+          </motion.h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {highlights.map((item, idx) => {
@@ -190,47 +224,98 @@ export default function About() {
               return (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, y: 35 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, amount: 0.05 }}
+                  transition={{ duration: 0.25, delay: idx * 0.04, ease: 'easeOut' }}
+                  className="h-full"
                 >
-                  <TiltCard maxTilt={10} className="h-full p-5 rounded-2xl bg-white border border-slate-200/90 shadow-soft-sm hover:shadow-soft flex flex-col justify-between">
-                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-3 ${item.color}`}>
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
-                      <p className="text-xs text-slate-600 mt-2 leading-relaxed">{item.desc}</p>
-                    </div>
-                  </TiltCard>
+                  <div className={`${item.floatClass} pause-on-hover h-full`}>
+                    <TiltCard
+                      maxTilt={12}
+                      scale={1.04}
+                      glareColor={item.glareColor}
+                      className={`group h-full p-6 rounded-3xl bg-white border border-slate-200/90 ${item.glowClass} ${item.borderGlow} transition-all duration-150 flex flex-col justify-between overflow-hidden cursor-pointer relative shadow-sm`}
+                    >
+                      {/* Periodic Cinematic Light Beam Sweep */}
+                      <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-white/50 to-transparent z-10 rounded-[inherit]" />
+
+                      {/* Top Accent Gradient Flare */}
+                      <div className={`absolute top-0 right-0 w-36 h-36 bg-gradient-to-br ${item.accentGlow} rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-200`} />
+
+                      <div>
+                        {/* Top Row: Icon + Badge */}
+                        <div className="flex items-center justify-between gap-2 mb-4">
+                          <div className="relative">
+                            <div className={`w-12 h-12 rounded-2xl border flex items-center justify-center transition-all duration-150 group-hover:scale-115 shadow-sm ${item.color}`}>
+                              <IconComponent className="w-6 h-6 transition-transform duration-150 group-hover:rotate-6" />
+                            </div>
+                          </div>
+                          <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border shadow-2xs ${item.badgeColor}`}>
+                            {item.badge}
+                          </span>
+                        </div>
+
+                        <h4 className="text-sm font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                          {item.title}
+                        </h4>
+                        <p className="text-xs text-slate-600 mt-2.5 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+
+                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-indigo-600 transition-colors">
+                        <span>Active Capability</span>
+                        <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-150" />
+                      </div>
+                    </TiltCard>
+                  </div>
                 </motion.div>
               );
             })}
           </div>
         </div>
 
-        {/* Stats Row (Scale Up Entrance) */}
+        {/* Stats Row with Lively Floating Motion, Beam Sweeps & Fast Hover Elevation */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true, amount: 0.05 }}
+          transition={{ duration: 0.28, ease: 'easeOut' }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-slate-200/70"
         >
-          {stats.map((stat) => (
-            <TiltCard
-              key={stat.label}
-              maxTilt={8}
-              className="p-5 rounded-2xl bg-white border border-slate-200/80 text-center shadow-soft-sm"
-            >
-              <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-1 text-gradient-indigo">
-                {stat.number}
-              </div>
-              <div className="text-sm font-bold text-slate-800">{stat.label}</div>
-              <div className="text-xs text-slate-500 mt-1">{stat.detail}</div>
-            </TiltCard>
-          ))}
+          {stats.map((stat, sIdx) => {
+            const statFloats = ['animate-card-float-2', 'animate-card-float-3', 'animate-card-float-4', 'animate-card-float-1'];
+            const currentFloat = statFloats[sIdx % statFloats.length];
+
+            return (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.05 }}
+                transition={{ duration: 0.22, delay: sIdx * 0.04 }}
+              >
+                <div className={`${currentFloat} pause-on-hover`}>
+                  <TiltCard
+                    maxTilt={10}
+                    scale={1.04}
+                    glareColor="rgba(99, 102, 241, 0.3)"
+                    className="group p-5 rounded-2xl bg-white border border-slate-200/90 text-center shadow-soft-sm hover:border-indigo-300 hover:shadow-xl transition-all duration-150 cursor-pointer overflow-hidden relative"
+                  >
+                    {/* Periodic Light Beam Sweep */}
+                    <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-white/50 to-transparent z-10 rounded-[inherit]" />
+
+                    <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-1 text-gradient-indigo group-hover:scale-115 transition-transform duration-150">
+                      {stat.number}
+                    </div>
+                    <div className="text-sm font-bold text-slate-800">{stat.label}</div>
+                    <div className="text-xs text-slate-500 mt-1">{stat.detail}</div>
+                  </TiltCard>
+                </div>
+              </motion.div>
+            );
+          })}
         </motion.div>
 
       </div>
