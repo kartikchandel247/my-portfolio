@@ -1,5 +1,7 @@
 import { GraduationCap, MapPin, Award, CheckCircle2, Cpu, HeartHandshake, ArrowUpRight, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { personalInfo } from '../data/portfolioData';
+import TiltCard from './TiltCard';
 
 export default function About() {
   const highlights = [
@@ -37,15 +39,21 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-20 relative bg-white/70 backdrop-blur-md border-y border-slate-200/60">
+    <section id="about" className="py-24 relative bg-white/70 backdrop-blur-md border-y border-slate-200/60 overflow-hidden">
       
       {/* Background Soft Glow */}
-      <div className="absolute top-1/2 left-0 w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[140px] pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-0 w-[550px] h-[550px] bg-indigo-100/40 rounded-full blur-[140px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        {/* Section Header with Zoom-In Entrance */}
+        <motion.div
+          initial={{ opacity: 0, y: -25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-3xl mx-auto space-y-3 mb-16"
+        >
           <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-200/70">
             About Kartik Chandel
           </span>
@@ -55,24 +63,30 @@ export default function About() {
           <p className="text-base text-slate-600 leading-relaxed">
             I don't just build applications — I ensure they operate flawlessly under every edge case.
           </p>
-        </div>
+        </motion.div>
 
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          {/* Left Column: Portrait Photo with Cinematic Frame & Badges */}
-          <div className="lg:col-span-5 flex justify-center">
-            <div className="relative group w-full max-w-[340px]">
+          {/* Left Column: Portrait Photo with 3D Tilt & Slide from Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="lg:col-span-5 flex justify-center"
+          >
+            <TiltCard maxTilt={10} scale={1.03} className="relative w-full max-w-[340px]">
               
               {/* Cinematic Glow Behind Image */}
-              <div className="absolute -inset-2 bg-gradient-to-tr from-indigo-500/30 via-purple-500/25 to-emerald-500/30 rounded-3xl blur-lg group-hover:blur-xl transition-all" />
+              <div className="absolute -inset-2 bg-gradient-to-tr from-indigo-500/30 via-purple-500/25 to-emerald-500/30 rounded-3xl blur-lg transition-all" />
 
               <div className="relative rounded-3xl p-3 bg-white/90 border border-slate-200 shadow-xl overflow-hidden">
                 <div className="w-full h-[380px] rounded-2xl overflow-hidden bg-slate-100">
                   <img
                     src="/kartik-portrait.jpg"
                     alt="Kartik Chandel Profile"
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-full object-cover object-top transition-transform duration-500"
                   />
                 </div>
 
@@ -86,11 +100,17 @@ export default function About() {
                 </div>
               </div>
 
-            </div>
-          </div>
+            </TiltCard>
+          </motion.div>
 
-          {/* Right Column: Story & Background */}
-          <div className="lg:col-span-7 space-y-6 text-slate-600 text-base leading-relaxed">
+          {/* Right Column: Story & Background (Slide in from Right) */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+            className="lg:col-span-7 space-y-6 text-slate-600 text-base leading-relaxed"
+          >
             <div className="p-6 rounded-2xl bg-white/90 border border-slate-200/90 shadow-soft-sm space-y-4">
               <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-indigo-600" />
@@ -109,9 +129,9 @@ export default function About() {
               </p>
             </div>
 
-            {/* Academic & Internship Cards */}
+            {/* Academic & Internship Cards with Micro-Tilt */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm">
+              <TiltCard maxTilt={8} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm">
                 <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 mb-3">
                   <GraduationCap className="w-5 h-5" />
                 </div>
@@ -120,9 +140,9 @@ export default function About() {
                 <div className="mt-3 text-xs font-semibold text-indigo-600 inline-flex items-center gap-1">
                   Active Student
                 </div>
-              </div>
+              </TiltCard>
 
-              <div className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm">
+              <TiltCard maxTilt={8} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm">
                 <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 mb-3">
                   <MapPin className="w-5 h-5" />
                 </div>
@@ -131,7 +151,7 @@ export default function About() {
                 <div className="mt-3 text-xs font-semibold text-emerald-600 inline-flex items-center gap-1">
                   Remote & Onsite Ready
                 </div>
-              </div>
+              </TiltCard>
             </div>
 
             {/* Inquire on WhatsApp & Email */}
@@ -140,7 +160,7 @@ export default function About() {
                 href={personalInfo.contact.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 px-5 py-3 rounded-xl transition-all"
+                className="inline-flex items-center gap-2 text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 px-5 py-3 rounded-xl transition-all shadow-sm"
               >
                 Inquire on WhatsApp
                 <ArrowUpRight className="w-4 h-4" />
@@ -148,58 +168,70 @@ export default function About() {
 
               <a
                 href={`mailto:${personalInfo.contact.email}`}
-                className="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100/70 px-5 py-3 rounded-xl transition-all border border-indigo-200/80"
+                className="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100/70 px-5 py-3 rounded-xl transition-all border border-indigo-200/80 shadow-sm"
               >
                 Send Email ({personalInfo.contact.email})
               </a>
             </div>
 
-          </div>
+          </motion.div>
 
         </div>
 
-        {/* Strengths & Highlights Grid */}
-        <div className="mt-14 space-y-4">
+        {/* Strengths & Highlights Grid (Staggered Zoom-In) */}
+        <div className="mt-16 space-y-4">
           <h3 className="text-lg font-bold text-slate-900 text-center">
             Core Engineering Superpowers
           </h3>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {highlights.map((item) => {
+            {highlights.map((item, idx) => {
               const IconComponent = item.icon;
               return (
-                <div
+                <motion.div
                   key={item.title}
-                  className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-soft-sm hover:shadow-soft transition-all hover:-translate-y-1 flex flex-col justify-between"
+                  initial={{ opacity: 0, y: 35 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
                 >
-                  <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-3 ${item.color}`}>
-                    <IconComponent className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
-                    <p className="text-xs text-slate-600 mt-2 leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
+                  <TiltCard maxTilt={10} className="h-full p-5 rounded-2xl bg-white border border-slate-200/90 shadow-soft-sm hover:shadow-soft flex flex-col justify-between">
+                    <div className={`w-10 h-10 rounded-xl border flex items-center justify-center mb-3 ${item.color}`}>
+                      <IconComponent className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-bold text-slate-900">{item.title}</h4>
+                      <p className="text-xs text-slate-600 mt-2 leading-relaxed">{item.desc}</p>
+                    </div>
+                  </TiltCard>
+                </motion.div>
               );
             })}
           </div>
         </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-14 pt-12 border-t border-slate-200/70">
+        {/* Stats Row (Scale Up Entrance) */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-12 border-t border-slate-200/70"
+        >
           {stats.map((stat) => (
-            <div
+            <TiltCard
               key={stat.label}
-              className="p-5 rounded-2xl bg-white border border-slate-200/80 text-center hover:bg-slate-50 transition-all shadow-soft-sm"
+              maxTilt={8}
+              className="p-5 rounded-2xl bg-white border border-slate-200/80 text-center shadow-soft-sm"
             >
               <div className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-1 text-gradient-indigo">
                 {stat.number}
               </div>
               <div className="text-sm font-bold text-slate-800">{stat.label}</div>
               <div className="text-xs text-slate-500 mt-1">{stat.detail}</div>
-            </div>
+            </TiltCard>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </section>
