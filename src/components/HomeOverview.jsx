@@ -328,7 +328,7 @@ export default function HomeOverview({ onNavigate }) {
 
           <div ref={projectsRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {featuredProjects.map((p, idx) => {
-              const isLeft = idx === 0;
+              const isFirst = idx === 0;
               return (
                 <motion.div
                   key={p.id}
@@ -337,19 +337,19 @@ export default function HomeOverview({ onNavigate }) {
                   variants={{
                     hidden: {
                       opacity: 0,
-                      x: isLeft ? -110 : 110,
+                      y: isFirst ? -95 : 95, // Card 1 comes from UP to DOWN, Card 2 comes from DOWN to UP!
                       scale: 0.92,
                     },
                     visible: {
                       opacity: 1,
-                      x: 0,
+                      y: 0,
                       scale: 1,
                       transition: {
                         type: 'spring',
                         stiffness: 210,
                         damping: 22,
                         mass: 0.85,
-                        delay: isLeft ? 0.05 : 0.15,
+                        delay: isFirst ? 0.05 : 0.15,
                       },
                     },
                   }}
