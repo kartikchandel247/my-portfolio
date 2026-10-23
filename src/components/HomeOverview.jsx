@@ -36,6 +36,12 @@ export default function HomeOverview({ onNavigate }) {
     margin: '-40px 0px -40px 0px',
   });
 
+  const ctaRef = useRef(null);
+  const isCtaInView = useInView(ctaRef, {
+    once: false,
+    amount: 0.25,
+  });
+
   const quickStats = [
     { number: '4+', label: 'Flagship Projects', detail: 'Mobile, Web, CRM, AI' },
     { number: '100+', label: 'QA Test Scenarios', detail: 'Automated & Manual Probes' },
@@ -509,8 +515,25 @@ export default function HomeOverview({ onNavigate }) {
 
       {/* 7. Short Direct Contact CTA Banner */}
       <section className="relative py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden">
+        <div ref={ctaRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            animate={isCtaInView ? 'visible' : 'hidden'}
+            variants={{
+              hidden: { opacity: 0, scale: 0.92, y: 30 },
+              visible: {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                transition: {
+                  type: 'spring',
+                  stiffness: 220,
+                  damping: 22,
+                },
+              },
+            }}
+            className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 relative overflow-hidden will-change-transform"
+          >
             
             <div className="space-y-2 text-center md:text-left max-w-xl">
               <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-3 py-1 rounded-full">
@@ -529,7 +552,7 @@ export default function HomeOverview({ onNavigate }) {
                 href={personalInfo.contact.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-all shadow-md hover:-translate-y-0.5 cursor-pointer"
               >
                 <MessageSquare className="w-4 h-4" />
                 <span>WhatsApp</span>
@@ -544,7 +567,7 @@ export default function HomeOverview({ onNavigate }) {
               </button>
             </div>
 
-          </div>
+          </motion.div>
         </div>
       </section>
 

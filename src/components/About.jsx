@@ -1,65 +1,26 @@
-import { GraduationCap, MapPin, Award, CheckCircle2, Cpu, HeartHandshake, ArrowUpRight, Sparkles } from 'lucide-react';
-import { personalInfo } from '../data/portfolioData';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { GraduationCap, MapPin, Award, CheckCircle2, Cpu, Bot, ArrowUpRight, Sparkles, ShieldCheck, Code2, Zap } from 'lucide-react';
+import { personalInfo, aboutPillars } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
 import SubpageHeader from './SubpageHeader';
 import ScrollPopStats from './ScrollPopStats';
+import TypewriterText from './TypewriterText';
+import { slideLeft, slideRight, fadeUp, zoomIn } from '../utils/motionVariants';
+
+const pillarIcons = {
+  Cpu: Cpu,
+  ShieldCheck: ShieldCheck,
+  Bot: Bot,
+};
 
 export default function About({ onNavigate }) {
-  const highlights = [
-    {
-      title: 'Full Stack Web & Mobile Engineering',
-      desc: 'Building responsive web interfaces with React & Tailwind CSS, cross-platform mobile apps with Flutter, and server-side APIs with Node.js and Supabase.',
-      icon: Cpu,
-      color: 'text-indigo-600 bg-indigo-50 border-indigo-200 group-hover:bg-indigo-600 group-hover:text-white',
-      borderGlow: 'hover:border-indigo-400 hover:shadow-[0_16px_36px_rgba(99,102,241,0.22)]',
-      accentGlow: 'from-indigo-500/15 via-purple-500/10 to-transparent',
-      floatClass: 'animate-card-float-1',
-      glowClass: 'glow-card-indigo',
-      glareColor: 'rgba(99, 102, 241, 0.4)',
-      badge: 'React & Flutter',
-      badgeColor: 'text-indigo-600 bg-indigo-50 border-indigo-200/80',
-    },
-    {
-      title: 'QA Automation & Edge Probing',
-      desc: 'Specialized in Playwright E2E automation scripts, boundary testing, cascade form verification, and generating automated visual QA audit reports.',
-      icon: CheckCircle2,
-      color: 'text-emerald-600 bg-emerald-50 border-emerald-200 group-hover:bg-emerald-600 group-hover:text-white',
-      borderGlow: 'hover:border-emerald-400 hover:shadow-[0_16px_36px_rgba(16,185,129,0.22)]',
-      accentGlow: 'from-emerald-500/15 via-teal-500/10 to-transparent',
-      floatClass: 'animate-card-float-2',
-      glowClass: 'glow-card-emerald',
-      glareColor: 'rgba(16, 185, 129, 0.4)',
-      badge: 'Playwright E2E',
-      badgeColor: 'text-emerald-600 bg-emerald-50 border-emerald-200/80',
-    },
-    {
-      title: 'Continuous Innovation & AI',
-      desc: 'Hands-on experience designing autonomous AI agents (KIRA Jarvis), integrating voice/NLP workflows, and containerizing backends with Docker.',
-      icon: Award,
-      color: 'text-violet-600 bg-violet-50 border-violet-200 group-hover:bg-violet-600 group-hover:text-white',
-      borderGlow: 'hover:border-violet-400 hover:shadow-[0_16px_36px_rgba(168,85,247,0.22)]',
-      accentGlow: 'from-violet-500/15 via-pink-500/10 to-transparent',
-      floatClass: 'animate-card-float-3',
-      glowClass: 'glow-card-violet',
-      glareColor: 'rgba(168, 85, 247, 0.4)',
-      badge: 'AI & Systems',
-      badgeColor: 'text-violet-600 bg-violet-50 border-violet-200/80',
-    },
-    {
-      title: 'Collaborative Problem Solver',
-      desc: 'Clear communicator with a proactive mindset. Focused on shipping clean code on time, meeting business milestones, and customer satisfaction.',
-      icon: HeartHandshake,
-      color: 'text-sky-600 bg-sky-50 border-sky-200 group-hover:bg-sky-600 group-hover:text-white',
-      borderGlow: 'hover:border-sky-400 hover:shadow-[0_16px_36px_rgba(14,165,233,0.22)]',
-      accentGlow: 'from-sky-500/15 via-cyan-500/10 to-transparent',
-      floatClass: 'animate-card-float-4',
-      glowClass: 'glow-card-cyan',
-      glareColor: 'rgba(14, 165, 233, 0.4)',
-      badge: 'Agile Delivery',
-      badgeColor: 'text-sky-600 bg-sky-50 border-sky-200/80',
-    },
-  ];
+  const introRef = useRef(null);
+  const isIntroInView = useInView(introRef, { once: false, amount: 0.25 });
+
+  const pillarsRef = useRef(null);
+  const isPillarsInView = useInView(pillarsRef, { once: false, amount: 0.2 });
 
   const stats = [
     { number: '4+', label: 'Flagship Projects', detail: 'Mobile, Web, CRM, AI' },
@@ -79,175 +40,222 @@ export default function About({ onNavigate }) {
         badge="About Kartik Chandel"
         title="Developer Mindset."
         titleHighlight="QA Precision."
-        description="I don't just build applications — I ensure they operate flawlessly under every edge case. Explore my background, academic credentials, and core engineering superpowers below."
+        description="I don't just build applications — I ensure they operate flawlessly under every real-world edge case. Discover my engineering philosophy, QA standards, and passion for autonomous innovation below."
         currentId="about"
         onNavigate={onNavigate}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        {/* 1. Main Intro Section: Photo + Typewriter Bio Card */}
+        <div ref={introRef} className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
-          {/* Left Column: Portrait Photo with 3D Tilt */}
-          <div className="lg:col-span-5 flex justify-center">
-            <TiltCard maxTilt={10} scale={1.03} className="relative w-full max-w-[340px]">
-              
-              {/* Cinematic Glow Behind Image */}
-              <div className="absolute -inset-2 bg-gradient-to-tr from-indigo-500/30 via-purple-500/25 to-emerald-500/30 rounded-3xl blur-lg transition-all" />
+          {/* Left Column: Portrait Photo with 3D Tilt & Magnetic Glare */}
+          <motion.div
+            initial="hidden"
+            animate={isIntroInView ? 'visible' : 'hidden'}
+            variants={slideLeft}
+            className="lg:col-span-5 flex justify-center will-change-transform"
+          >
+            <TiltCard maxTilt={10} scale={1.04} horizontalMove={16} className="relative w-full max-w-[360px]">
+              {/* Radiant Glow Behind Image */}
+              <div className="absolute -inset-2 bg-gradient-to-tr from-indigo-500/30 via-purple-500/25 to-emerald-500/30 rounded-3xl blur-xl transition-all" />
 
-              <div className="relative rounded-3xl p-3 bg-white/90 border border-slate-200 shadow-xl overflow-hidden">
-                <div className="w-full h-[380px] rounded-2xl overflow-hidden bg-slate-100">
+              <div className="relative rounded-3xl p-3.5 bg-white/95 border border-slate-200/90 shadow-xl overflow-hidden">
+                <div className="w-full h-[390px] rounded-2xl overflow-hidden bg-slate-100 relative group">
                   <img
                     src="/kartik-portrait.jpg"
                     alt="Kartik Chandel Profile"
                     loading="lazy"
                     decoding="async"
-                    className="w-full h-full object-cover object-top transition-transform duration-300"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
+                  {/* Subtle Top Gradient Sheen */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60" />
                 </div>
 
                 {/* Floating Location Overlay */}
                 <div className="absolute bottom-6 left-6 right-6 p-3 rounded-xl bg-slate-900/85 backdrop-blur-md text-white text-xs flex items-center justify-between shadow-lg">
                   <div className="flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-emerald-400" />
-                    <span className="font-semibold">Bilaspur, HP</span>
+                    <span className="font-semibold">{personalInfo.location}</span>
                   </div>
                   <span className="text-[11px] text-slate-300 font-medium">India</span>
                 </div>
               </div>
-
             </TiltCard>
-          </div>
+          </motion.div>
 
-          {/* Right Column: Story & Background */}
-          <div className="lg:col-span-7 space-y-6 text-slate-600 text-base leading-relaxed">
-            <div className="p-6 rounded-2xl bg-white/90 border border-slate-200/90 shadow-soft-sm space-y-4">
-              <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-indigo-600" />
-                My Story & Background
+          {/* Right Column: Main Intro Card with Typewriter Headline */}
+          <motion.div
+            initial="hidden"
+            animate={isIntroInView ? 'visible' : 'hidden'}
+            variants={slideRight}
+            className="lg:col-span-7 space-y-6 will-change-transform text-left"
+          >
+            <div className="p-7 sm:p-9 rounded-3xl bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-soft-sm space-y-5 relative overflow-hidden">
+              <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-indigo-500/10 to-transparent z-0 rounded-[inherit]" />
+
+              <div className="flex items-center gap-2 text-indigo-600 text-xs font-bold uppercase tracking-wider bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200/60 w-fit">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Professional Identity & Journey</span>
+              </div>
+
+              {/* Dynamic Typewriter Headline */}
+              <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
+                <TypewriterText
+                  text="Full Stack Web & Mobile Engineer with Rigorous QA Testing Precision."
+                  speed={28}
+                  delay={150}
+                  className="text-slate-900 font-extrabold"
+                  cursorColor="bg-indigo-600"
+                />
               </h3>
-              <p>
-                Originally from the scenic hills of <strong className="text-slate-800">Bilaspur, Himachal Pradesh</strong>, 
-                I am currently pursuing my technical degree at <strong className="text-slate-800">{personalInfo.education.institution}</strong>. 
-                My focus centers on high-impact software engineering and test automation.
+
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                Based in <strong className="text-slate-900">Bilaspur, Himachal Pradesh</strong>, and currently pursuing Computer Science & Engineering at <strong className="text-slate-900">{personalInfo.education.institution}</strong>. 
+                I bridge the gap between building modern client-facing applications and enforcing industrial-grade automated quality assurance.
               </p>
-              <p>
-                As an active <strong className="text-slate-800">Full Stack Developer & QA Intern</strong>, I balance both worlds: 
-                engineering robust full-stack web and mobile apps with <strong className="text-slate-800">React, Flutter, and Node.js</strong>, 
-                while simultaneously writing comprehensive automated E2E tests using <strong className="text-slate-800">Playwright</strong>. 
-                Knowing how software breaks in production enables me to design cleaner, resilient architectures.
+
+              <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                Having broken real-world software across countless edge-case scenarios, I code with a defensive, performance-first mindset. My work ensures high-contrast light aesthetics, sub-second response times, and 100% regression-free deployments.
               </p>
+
+              {/* Academic & Hometown Badges */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <GraduationCap className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-900">{personalInfo.education.institution}</h4>
+                    <p className="text-[11px] text-slate-600 mt-0.5">{personalInfo.education.status} • {personalInfo.education.focus}</p>
+                  </div>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-900">Bilaspur, Himachal Pradesh</h4>
+                    <p className="text-[11px] text-slate-600 mt-0.5">Hometown Roots • Remote & Hybrid Ready</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Direct Quick Actions */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <a
+                  href={personalInfo.contact.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 px-5 py-3 rounded-xl transition-all shadow-sm hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <span>Chat on WhatsApp</span>
+                  <ArrowUpRight className="w-4 h-4 text-emerald-600" />
+                </a>
+
+                <a
+                  href={`mailto:${personalInfo.contact.email}`}
+                  className="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/70 px-5 py-3 rounded-xl transition-all border border-indigo-200/80 shadow-sm hover:-translate-y-0.5 cursor-pointer"
+                >
+                  <span>Send Direct Email</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
+              </div>
+
             </div>
-
-            {/* Academic & Internship Cards with Fast Response */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <TiltCard maxTilt={8} scale={1.03} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm hover:border-indigo-300 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 mb-3">
-                  <GraduationCap className="w-5 h-5" />
-                </div>
-                <h4 className="text-sm font-bold text-slate-900">{personalInfo.education.institution}</h4>
-                <p className="text-xs text-slate-500 mt-1">{personalInfo.education.status} • {personalInfo.education.focus}</p>
-                <div className="mt-3 text-xs font-semibold text-indigo-600 inline-flex items-center gap-1">
-                  Active Student
-                </div>
-              </TiltCard>
-
-              <TiltCard maxTilt={8} scale={1.03} className="p-5 rounded-2xl bg-white border border-slate-200 shadow-soft-sm hover:border-emerald-300 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 mb-3">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <h4 className="text-sm font-bold text-slate-900">Bilaspur, Himachal Pradesh</h4>
-                <p className="text-xs text-slate-500 mt-1">Hometown & Roots, India</p>
-                <div className="mt-3 text-xs font-semibold text-emerald-600 inline-flex items-center gap-1">
-                  Remote & Onsite Ready
-                </div>
-              </TiltCard>
-            </div>
-
-            {/* Inquire on WhatsApp & Email */}
-            <div className="flex flex-wrap items-center gap-4 pt-2">
-              <a
-                href={personalInfo.contact.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 px-5 py-3 rounded-xl transition-all shadow-sm hover:-translate-y-0.5"
-              >
-                Inquire on WhatsApp
-                <ArrowUpRight className="w-4 h-4" />
-              </a>
-
-              <a
-                href={`mailto:${personalInfo.contact.email}`}
-                className="inline-flex items-center gap-2 text-xs font-bold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100/70 px-5 py-3 rounded-xl transition-all border border-indigo-200/80 shadow-sm hover:-translate-y-0.5"
-              >
-                Send Email ({personalInfo.contact.email})
-              </a>
-            </div>
-
-          </div>
+          </motion.div>
 
         </div>
 
-        {/* Core Engineering Superpowers: Fast Organic Motion & Floating Levitation */}
-        <div className="mt-16 space-y-4">
-          <h3 className="text-lg font-extrabold text-slate-900 text-center">
-            Core Engineering Superpowers
-          </h3>
+        {/* 2. Core Pillars: 3 Feature Cards (Philosophy, QA, Innovation) */}
+        <div ref={pillarsRef} className="mt-20 space-y-6">
+          <div className="text-center space-y-2 max-w-2xl mx-auto">
+            <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200/70">
+              Core Engineering Pillars
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              How I Approach <span className="text-gradient-indigo">Every Project</span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600">
+              A balanced trinity of clean code craftsmanship, uncompromising test automation, and cutting-edge AI integration.
+            </p>
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {highlights.map((item) => {
-              const IconComponent = item.icon;
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {aboutPillars.map((pillar, idx) => {
+              const IconComponent = pillarIcons[pillar.icon] || Cpu;
+              // Alternating entrance: 0 -> slideLeft, 1 -> slideRight, 2 -> slideLeft
+              const cardVariant = idx % 2 === 0 ? slideLeft : slideRight;
+
               return (
-                <div key={item.title} className="h-full">
-                  <div className={`${item.floatClass} pause-on-hover h-full`}>
-                    <TiltCard
-                      maxTilt={12}
-                      scale={1.04}
-                      glareColor={item.glareColor}
-                      className={`group h-full p-6 rounded-3xl bg-white border border-slate-200/90 ${item.glowClass} ${item.borderGlow} transition-all duration-150 flex flex-col justify-between overflow-hidden cursor-pointer relative shadow-sm`}
-                    >
-                      {/* Periodic Cinematic Light Beam Sweep */}
-                      <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-white/50 to-transparent z-10 rounded-[inherit]" />
+                <motion.div
+                  key={pillar.id}
+                  initial="hidden"
+                  animate={isPillarsInView ? 'visible' : 'hidden'}
+                  variants={cardVariant}
+                  className="h-full will-change-transform"
+                >
+                  <TiltCard
+                    maxTilt={9}
+                    scale={1.045}
+                    horizontalMove={15}
+                    className="h-full p-6 sm:p-7 rounded-3xl bg-white border border-slate-200/90 shadow-soft-sm hover:border-indigo-400 hover:shadow-xl hover:shadow-indigo-500/10 transition-all flex flex-col justify-between overflow-hidden relative group cursor-pointer"
+                  >
+                    {/* Beam Sweep */}
+                    <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-white/60 to-transparent z-10 rounded-[inherit]" />
 
-                      {/* Top Accent Gradient Flare */}
-                      <div className={`absolute top-0 right-0 w-36 h-36 bg-gradient-to-br ${item.accentGlow} rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-200`} />
+                    {/* Ambient Flare */}
+                    <div className={`absolute top-0 right-0 w-44 h-44 bg-gradient-to-br ${pillar.accentGlow} rounded-full blur-2xl pointer-events-none group-hover:scale-150 transition-transform duration-300`} />
 
-                      <div>
-                        {/* Top Row: Icon + Badge */}
-                        <div className="flex items-center justify-between gap-2 mb-4">
-                          <div className="relative">
-                            <div className={`w-12 h-12 rounded-2xl border flex items-center justify-center transition-all duration-150 group-hover:scale-115 shadow-sm ${item.color}`}>
-                              <IconComponent className="w-6 h-6 transition-transform duration-150 group-hover:rotate-6" />
-                            </div>
-                          </div>
-                          <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border shadow-2xs ${item.badgeColor}`}>
-                            {item.badge}
-                          </span>
+                    <div>
+                      {/* Top Header Badge & Icon */}
+                      <div className="flex items-center justify-between gap-2 mb-4">
+                        <div className={`w-11 h-11 rounded-2xl border flex items-center justify-center transition-all duration-200 group-hover:scale-110 shadow-sm ${pillar.color}`}>
+                          <IconComponent className="w-5 h-5 transition-transform duration-200 group-hover:rotate-6" />
                         </div>
-
-                        <h4 className="text-sm font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors">
-                          {item.title}
-                        </h4>
-                        <p className="text-xs text-slate-600 mt-2.5 leading-relaxed">
-                          {item.desc}
-                        </p>
+                        <span className="text-[10px] font-bold px-2.5 py-1 rounded-full border bg-slate-50 text-slate-700 border-slate-200/80 shadow-2xs">
+                          {pillar.badge}
+                        </span>
                       </div>
 
-                      <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-slate-400 group-hover:text-indigo-600 transition-colors">
-                        <span>Active Capability</span>
-                        <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-150" />
+                      <h4 className="text-base font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                        {pillar.title}
+                      </h4>
+                      <div className="text-xs font-semibold text-indigo-600/90 mt-0.5 mb-3">
+                        {pillar.subtitle}
                       </div>
-                    </TiltCard>
-                  </div>
-                </div>
+
+                      <p className="text-xs text-slate-600 leading-relaxed mb-4">
+                        {pillar.description}
+                      </p>
+
+                      {/* Bullet Highlights */}
+                      <ul className="space-y-2 pt-2 border-t border-slate-100">
+                        {pillar.points.map((pt) => (
+                          <li key={pt} className="text-[11px] text-slate-700 flex items-start gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0 mt-1" />
+                            <span>{pt}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] font-bold text-indigo-600">
+                      <span>Engineering Standard</span>
+                      <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    </div>
+                  </TiltCard>
+                </motion.div>
               );
             })}
           </div>
         </div>
 
-        {/* Stats Row with Scroll-Triggered Pop-Up Motion & Dynamic Counters */}
-        <div className="mt-16 pt-12 border-t border-slate-200/70">
+        {/* 3. Stats Row with Scroll-Triggered Pop-Up Motion & Dynamic Counters */}
+        <div className="mt-20 pt-12 border-t border-slate-200/70">
           <ScrollPopStats stats={stats} />
         </div>
 
