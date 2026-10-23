@@ -537,3 +537,31 @@
 .animate-cyber-aura {
   animation: cyberPulseAura 7s ease-in-out infinite;
 }
+
+/* Mobile & Tablet Usability & Performance Enhancements */
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  /* Remove default blue/grey tap highlight box on mobile iOS & Android */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Smooth momentum scrolling on iOS Safari */
+  .touch-momentum {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Mobile Notch & Dynamic Island Safe Area insets */
+  .safe-padding-bottom {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
+}

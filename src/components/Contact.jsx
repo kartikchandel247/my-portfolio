@@ -278,10 +278,12 @@ export default function Contact({ onNavigate }) {
                       <input
                         type="text"
                         required
+                        autoComplete="name"
+                        inputMode="text"
                         placeholder="e.g. Alex Sharma"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-900 text-sm transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-900 text-base sm:text-sm transition-all"
                       />
                     </div>
 
@@ -292,10 +294,12 @@ export default function Contact({ onNavigate }) {
                       <input
                         type="email"
                         required
+                        autoComplete="email"
+                        inputMode="email"
                         placeholder="e.g. alex@company.com"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-900 text-sm transition-all"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-900 text-base sm:text-sm transition-all"
                       />
                     </div>
                   </div>
@@ -309,7 +313,7 @@ export default function Contact({ onNavigate }) {
                       placeholder="e.g. Full-Stack Web App, Flutter App, or QA Automation"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-900 text-sm transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-900 text-base sm:text-sm transition-all"
                     />
                   </div>
 
@@ -323,15 +327,15 @@ export default function Contact({ onNavigate }) {
                       placeholder="Share context on your project requirements, target timeline, or QA test criteria..."
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-900 text-sm transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 text-slate-900 text-base sm:text-sm transition-all resize-none"
                     />
                   </div>
 
                   <motion.button
-                    whileHover={{ scale: 1.02 }}
+                    whileHover={{ scale: 1.01 }}
                     whileTap={{ scale: 0.98 }}
                     type="submit"
-                    className="w-full py-3.5 px-6 rounded-2xl bg-slate-900 hover:bg-indigo-600 text-white font-bold text-sm shadow-lg shadow-slate-900/15 hover:shadow-indigo-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
+                    className="w-full min-h-[48px] py-3.5 px-6 rounded-2xl bg-slate-900 hover:bg-indigo-600 active:bg-indigo-700 text-white font-bold text-sm shadow-lg shadow-slate-900/15 hover:shadow-indigo-500/30 transition-all flex items-center justify-center gap-2 cursor-pointer"
                   >
                     <Send className="w-4 h-4" />
                     <span>Send Message & Trigger Confetti</span>

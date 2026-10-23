@@ -104,34 +104,36 @@ export default function Hero({ onNavigate }) {
               Bridging modern visual aesthetics with enterprise-grade stability.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap items-center gap-3 pt-1">
+            {/* CTA Buttons - Mobile Thumb-Friendly Targets */}
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1 w-full sm:w-auto">
               <button
                 onClick={() => onNavigate ? onNavigate('projects') : null}
-                className="inline-flex items-center gap-2 px-5 sm:px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold text-xs sm:text-sm hover:bg-indigo-600 shadow-lg shadow-slate-900/15 hover:shadow-indigo-500/30 transition-all hover:-translate-y-0.5 cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 min-h-[46px] px-5 sm:px-6 py-3 rounded-2xl bg-slate-900 text-white font-bold text-xs sm:text-sm hover:bg-indigo-600 active:scale-98 shadow-lg shadow-slate-900/15 hover:shadow-indigo-500/30 transition-all hover:-translate-y-0.5 cursor-pointer w-full sm:w-auto"
               >
                 <Code2 className="w-4 h-4 text-indigo-300" />
                 <span>View Flagship Projects</span>
               </button>
 
-              <a
-                href={personalInfo.contact.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 sm:px-5 py-3 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 font-bold text-xs sm:text-sm hover:bg-emerald-100/90 transition-all hover:-translate-y-0.5 shadow-soft-sm"
-              >
-                <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
-                <span>WhatsApp Chat</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
+              <div className="flex items-center gap-2 w-full sm:w-auto">
+                <a
+                  href={personalInfo.contact.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 min-h-[46px] px-4 sm:px-5 py-3 rounded-2xl bg-emerald-50 border border-emerald-300 text-emerald-800 font-bold text-xs sm:text-sm hover:bg-emerald-100/90 active:scale-98 transition-all hover:-translate-y-0.5 shadow-soft-sm"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-emerald-600" />
+                  <span>WhatsApp</span>
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
 
-              <a
-                href={`tel:${personalInfo.contact.phone}`}
-                className="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-white border border-slate-200 text-slate-700 font-bold text-xs sm:text-sm hover:border-slate-300 hover:bg-slate-50 transition-all shadow-soft-sm"
-              >
-                <Phone className="w-4 h-4 text-slate-500" />
-                <span>Call Directly</span>
-              </a>
+                <a
+                  href={`tel:${personalInfo.contact.phone}`}
+                  className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 min-h-[46px] px-4 py-3 rounded-2xl bg-white border border-slate-200 text-slate-700 font-bold text-xs sm:text-sm hover:border-slate-300 hover:bg-slate-50 active:scale-98 transition-all shadow-soft-sm"
+                >
+                  <Phone className="w-4 h-4 text-slate-500" />
+                  <span>Call</span>
+                </a>
+              </div>
             </div>
 
             {/* Interactive Social Media Redirection Badges */}
@@ -165,7 +167,7 @@ export default function Hero({ onNavigate }) {
           <motion.div
             initial={false}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            className="lg:col-span-5 relative flex items-center justify-center min-h-[400px] sm:min-h-[480px] lg:min-h-[520px]"
+            className="lg:col-span-5 relative flex items-center justify-center min-h-[440px] sm:min-h-[500px] lg:min-h-[540px] overflow-visible"
           >
             <HeroCutoutDisplay />
           </motion.div>

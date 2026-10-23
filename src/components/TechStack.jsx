@@ -68,15 +68,15 @@ export default function TechStack({ onNavigate }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Filter Navigation Tabs */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        {/* Filter Navigation Tabs with Mobile Swipe Scroll */}
+        <div className="flex items-center gap-2 mb-10 overflow-x-auto no-scrollbar pb-2 px-1 justify-start sm:justify-center touch-pan-x">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer ${
+              className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer shrink-0 min-h-[40px] flex items-center ${
                 activeFilter === cat
-                  ? 'bg-slate-900 text-white shadow-md shadow-slate-900/15 scale-105'
+                  ? 'bg-slate-900 text-white shadow-md shadow-slate-900/15'
                   : 'bg-white border border-slate-200 text-slate-600 hover:bg-indigo-50 hover:text-indigo-600'
               }`}
             >

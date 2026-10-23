@@ -14,6 +14,8 @@ export default function TiltCard({
   const rafId = useRef(null);
 
   const handleMouseMove = (e) => {
+    // Disable expensive tilt on touch/mobile devices to keep scrolling smooth and natural
+    if (typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches) return;
     if (!cardRef.current) return;
     const card = cardRef.current;
     const rect = card.getBoundingClientRect();
