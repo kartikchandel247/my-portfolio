@@ -83,12 +83,12 @@ export default function HomeOverview({ onNavigate }) {
             initial="hidden"
             animate={isAboutInView ? 'visible' : 'hidden'}
             variants={{
-              hidden: { opacity: 0, y: 30, scale: 0.98 },
+              hidden: { opacity: 0, y: 15, scale: 0.98 },
               visible: {
                 opacity: 1,
                 y: 0,
                 scale: 1,
-                transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
+                transition: { duration: 0.28, ease: [0.16, 1, 0.3, 1] },
               },
             }}
             className="p-6 sm:p-10 rounded-3xl bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-soft-sm relative overflow-hidden"
@@ -101,15 +101,15 @@ export default function HomeOverview({ onNavigate }) {
               {/* Big Card Content: Comes from LEFT to RIGHT and sets into position */}
               <motion.div
                 variants={{
-                  hidden: { opacity: 0, x: -85 },
+                  hidden: { opacity: 0, x: -35 },
                   visible: {
                     opacity: 1,
                     x: 0,
                     transition: {
                       type: 'spring',
-                      stiffness: 220,
-                      damping: 22,
-                      mass: 0.85,
+                      stiffness: 380,
+                      damping: 28,
+                      mass: 0.5,
                     },
                   },
                 }}
@@ -117,8 +117,8 @@ export default function HomeOverview({ onNavigate }) {
               >
                 <motion.span
                   variants={{
-                    hidden: { opacity: 0, x: -30 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+                    hidden: { opacity: 0, x: -15 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.2 } },
                   }}
                   className="inline-block text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200/70"
                 >
@@ -127,8 +127,8 @@ export default function HomeOverview({ onNavigate }) {
 
                 <motion.h2
                   variants={{
-                    hidden: { opacity: 0, x: -50 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.45, delay: 0.05 } },
+                    hidden: { opacity: 0, x: -20 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.22, delay: 0.02 } },
                   }}
                   className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight"
                 >
@@ -137,8 +137,8 @@ export default function HomeOverview({ onNavigate }) {
 
                 <motion.p
                   variants={{
-                    hidden: { opacity: 0, x: -40 },
-                    visible: { opacity: 1, x: 0, transition: { duration: 0.45, delay: 0.1 } },
+                    hidden: { opacity: 0, x: -15 },
+                    visible: { opacity: 1, x: 0, transition: { duration: 0.22, delay: 0.04 } },
                   }}
                   className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal"
                 >
@@ -148,8 +148,8 @@ export default function HomeOverview({ onNavigate }) {
 
                 <motion.div
                   variants={{
-                    hidden: { opacity: 0, x: -35, scale: 0.95 },
-                    visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.45, delay: 0.15 } },
+                    hidden: { opacity: 0, x: -10, scale: 0.98 },
+                    visible: { opacity: 1, x: 0, scale: 1, transition: { duration: 0.22, delay: 0.06 } },
                   }}
                   className="pt-2"
                 >
@@ -169,16 +169,17 @@ export default function HomeOverview({ onNavigate }) {
                 {/* Top Mini Card: Comes from UP (Sliding down into position) */}
                 <motion.div
                   variants={{
-                    hidden: { opacity: 0, y: -75, scale: 0.88 },
+                    hidden: { opacity: 0, y: -30, scale: 0.94 },
                     visible: {
                       opacity: 1,
                       y: 0,
                       scale: 1,
                       transition: {
                         type: 'spring',
-                        stiffness: 240,
-                        damping: 20,
-                        delay: 0.12,
+                        stiffness: 380,
+                        damping: 28,
+                        mass: 0.5,
+                        delay: 0.04,
                       },
                     },
                   }}
@@ -197,16 +198,17 @@ export default function HomeOverview({ onNavigate }) {
                 {/* Bottom Mini Card: Comes from DOWN (Sliding up into position) */}
                 <motion.div
                   variants={{
-                    hidden: { opacity: 0, y: 75, scale: 0.88 },
+                    hidden: { opacity: 0, y: 30, scale: 0.94 },
                     visible: {
                       opacity: 1,
                       y: 0,
                       scale: 1,
                       transition: {
                         type: 'spring',
-                        stiffness: 240,
-                        damping: 20,
-                        delay: 0.22,
+                        stiffness: 380,
+                        damping: 28,
+                        mass: 0.5,
+                        delay: 0.08,
                       },
                     },
                   }}
@@ -264,8 +266,8 @@ export default function HomeOverview({ onNavigate }) {
                   variants={{
                     hidden: {
                       opacity: 0,
-                      x: isLeft ? -110 : 110,
-                      scale: 0.92,
+                      x: isLeft ? -35 : 35,
+                      scale: 0.98,
                     },
                     visible: {
                       opacity: 1,
@@ -273,10 +275,10 @@ export default function HomeOverview({ onNavigate }) {
                       scale: 1,
                       transition: {
                         type: 'spring',
-                        stiffness: 210,
-                        damping: 22,
-                        mass: 0.85,
-                        delay: isLeft ? 0.05 : 0.15,
+                        stiffness: 380,
+                        damping: 28,
+                        mass: 0.5,
+                        delay: isLeft ? 0.02 : 0.06,
                       },
                     },
                   }}
@@ -350,8 +352,8 @@ export default function HomeOverview({ onNavigate }) {
                   variants={{
                     hidden: {
                       opacity: 0,
-                      y: isFirst ? -95 : 95, // Card 1 comes from UP to DOWN, Card 2 comes from DOWN to UP!
-                      scale: 0.92,
+                      y: isFirst ? -30 : 30, // Card 1 comes from UP to DOWN, Card 2 comes from DOWN to UP!
+                      scale: 0.98,
                     },
                     visible: {
                       opacity: 1,
@@ -359,10 +361,10 @@ export default function HomeOverview({ onNavigate }) {
                       scale: 1,
                       transition: {
                         type: 'spring',
-                        stiffness: 210,
-                        damping: 22,
-                        mass: 0.85,
-                        delay: isFirst ? 0.05 : 0.15,
+                        stiffness: 380,
+                        damping: 28,
+                        mass: 0.5,
+                        delay: isFirst ? 0.02 : 0.06,
                       },
                     },
                   }}
@@ -427,15 +429,15 @@ export default function HomeOverview({ onNavigate }) {
             variants={{
               hidden: {
                 opacity: 0,
-                scale: 1.12, // Zoom out entrance on scroll as requested!
-                y: 25,
+                scale: 1.05,
+                y: 12,
               },
               visible: {
                 opacity: 1,
-                scale: 1.0, // Zooms out to settle into clean normal alignment
+                scale: 1.0,
                 y: 0,
                 transition: {
-                  duration: 0.65,
+                  duration: 0.28,
                   ease: [0.16, 1, 0.3, 1],
                 },
               },
@@ -465,8 +467,8 @@ export default function HomeOverview({ onNavigate }) {
                 hidden: {},
                 visible: {
                   transition: {
-                    staggerChildren: 0.5, // Exact 0.5s gap as requested!
-                    delayChildren: 0.25,
+                    staggerChildren: 0.04,
+                    delayChildren: 0.04,
                   },
                 },
               }}
@@ -520,15 +522,16 @@ export default function HomeOverview({ onNavigate }) {
             initial="hidden"
             animate={isCtaInView ? 'visible' : 'hidden'}
             variants={{
-              hidden: { opacity: 0, scale: 0.92, y: 30 },
+              hidden: { opacity: 0, scale: 0.96, y: 15 },
               visible: {
                 opacity: 1,
                 scale: 1,
                 y: 0,
                 transition: {
                   type: 'spring',
-                  stiffness: 220,
-                  damping: 22,
+                  stiffness: 380,
+                  damping: 28,
+                  mass: 0.5,
                 },
               },
             }}

@@ -8,8 +8,8 @@ import { useInView } from 'framer-motion';
  */
 export default function TypewriterText({
   text = '',
-  speed = 32,
-  delay = 200,
+  speed = 12,
+  delay = 40,
   className = '',
   cursorColor = 'bg-indigo-600',
   replayOnScroll = true,
@@ -18,7 +18,7 @@ export default function TypewriterText({
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, {
     once: !replayOnScroll,
-    amount: 0.3,
+    amount: 0.1,
   });
 
   const [displayedText, setDisplayedText] = useState('');

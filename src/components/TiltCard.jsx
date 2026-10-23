@@ -46,7 +46,7 @@ export default function TiltCard({
     if (rafId.current) cancelAnimationFrame(rafId.current);
     if (!cardRef.current) return;
     const card = cardRef.current;
-    card.style.transition = 'transform 0.32s cubic-bezier(0.16, 1, 0.3, 1)';
+    card.style.transition = 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)';
     card.style.transform = 'perspective(1000px) translate3d(0px, 0px, 0) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
     if (glare && glareRef.current) {
       glareRef.current.style.opacity = '0';

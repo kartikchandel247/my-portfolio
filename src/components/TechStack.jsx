@@ -1,11 +1,11 @@
-import { useState, useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Code2, Smartphone, Database, ShieldCheck, CheckCircle, Terminal, Layers, Sparkles, ArrowRight, Wrench, GitBranch } from 'lucide-react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Code2, Database, ShieldCheck, CheckCircle, Wrench } from 'lucide-react';
 import { skills } from '../data/portfolioData';
 import TiltCard from './TiltCard';
 import SectionBackground from './SectionBackground';
 import SubpageHeader from './SubpageHeader';
-import { zoomIn, slideLeft, slideRight, fadeUp } from '../utils/motionVariants';
+import { slideLeft, slideRight } from '../utils/motionVariants';
 
 const categoryIcons = {
   'Frontend & Mobile': Code2,
@@ -43,11 +43,6 @@ const categoryAccents = {
 
 export default function TechStack({ onNavigate }) {
   const [activeFilter, setActiveFilter] = useState('All');
-  const gridRef = useRef(null);
-  const isGridInView = useInView(gridRef, { once: false, amount: 0.15 });
-
-  const terminalRef = useRef(null);
-  const isTerminalInView = useInView(terminalRef, { once: false, amount: 0.2 });
 
   const categories = ['All', 'Frontend & Mobile', 'Backend & Database', 'Quality Assurance & Testing', 'DevOps & Tools'];
 
@@ -90,8 +85,8 @@ export default function TechStack({ onNavigate }) {
           ))}
         </div>
 
-        {/* 1. Category Cards with Zoom-In Entrance (scale: 0.85 -> 1.0) + 3D Tilt */}
-        <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* 1. Category Cards with Slide-In Entrance + 3D Tilt */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {filteredGroups.map((group, index) => {
             const IconComponent = categoryIcons[group.category] || Code2;
             const accent = categoryAccents[group.category] || categoryAccents['Frontend & Mobile'];
@@ -105,7 +100,7 @@ export default function TechStack({ onNavigate }) {
                 whileInView="visible"
                 viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
                 variants={cardVariant}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.04 }}
                 className="h-full will-change-transform"
               >
                 <TiltCard
@@ -164,38 +159,6 @@ export default function TechStack({ onNavigate }) {
               </motion.div>
             );
           })}
-        </div>
-
-        {/* 2. Interactive Terminal Architecture Simulator (Zoom-In Entrance) */}
-        <div ref={terminalRef} className="mt-20">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
-            variants={zoomIn}
-            className="rounded-3xl bg-slate-950 text-slate-200 border border-slate-800 shadow-2xl p-6 sm:p-8 relative overflow-hidden font-mono text-xs sm:text-sm"
-          >
-            {/* Terminal Window Header */}
-            <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-800">
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block" />
-                <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block" />
-                <span className="ml-2 text-xs text-slate-400 font-sans font-bold">kartik-chandel@dev-environment: ~/architecture-pipeline</span>
-              </div>
-              <span className="text-[11px] text-emerald-400 font-bold hidden sm:inline-block">● Pipeline Active</span>
-            </div>
-
-            {/* Code Pipeline Log */}
-            <div className="space-y-2 text-slate-300 leading-relaxed overflow-x-auto">
-              <p className="text-emerald-400">$ npx playwright test --project=chromium,firefox,webkit</p>
-              <p className="text-slate-400">Running 100+ E2E automated test scenarios across Chromium, WebKit & Firefox...</p>
-              <p className="text-indigo-400">✓ Auth cascade barrier check passed (24ms)</p>
-              <p className="text-indigo-400">✓ Offline lead queue synchronization validated with Supabase (41ms)</p>
-              <p className="text-indigo-400">✓ 300m GPS geofencing radius assertion verified (18ms)</p>
-              <p className="text-emerald-300 font-bold">Passed: 100 / 100 (100.0%) — 0 regressions detected. Ready for production deployment on Vercel.</p>
-            </div>
-          </motion.div>
         </div>
 
       </div>

@@ -20,13 +20,13 @@ export default function Hero({ onNavigate }) {
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
-    const typingSpeed = isDeleting ? 25 : 45;
+    const typingSpeed = isDeleting ? 16 : 28;
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
         setDisplayText(currentRole.substring(0, displayText.length + 1));
         if (displayText === currentRole) {
-          setTimeout(() => setIsDeleting(true), 1200);
+          setTimeout(() => setIsDeleting(true), 900);
         }
       } else {
         setDisplayText(currentRole.substring(0, displayText.length - 1));

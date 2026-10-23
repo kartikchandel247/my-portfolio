@@ -107,8 +107,8 @@ export default function About({ onNavigate }) {
               <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
                 <TypewriterText
                   text="Full Stack Web & Mobile Engineer with Rigorous QA Testing Precision."
-                  speed={28}
-                  delay={150}
+                  speed={12}
+                  delay={40}
                   className="text-slate-900 font-extrabold"
                   cursorColor="bg-indigo-600"
                 />
