@@ -58,7 +58,7 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
       {/* Top Main Navbar */}
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          scrolled ? 'glass-nav py-3 shadow-soft-sm' : 'bg-transparent py-4'
+          scrolled ? 'glass-nav py-3' : 'bg-transparent py-4'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -91,8 +91,8 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
             </div>
           </button>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1.5 bg-white/80 backdrop-blur-md px-2.5 py-1.5 rounded-full border border-slate-200/90 shadow-soft-sm ml-auto">
+          {/* Desktop Navigation - Transparent Glass Capsule */}
+          <nav className="hidden md:flex items-center gap-1.5 bg-white/20 hover:bg-white/30 backdrop-blur-xl px-2.5 py-1.5 rounded-full border border-white/60 shadow-none ml-auto transition-all duration-200">
             {navLinks.map((link) => {
               const isActive = currentPage === link.id;
               const Icon = link.icon;
@@ -100,10 +100,10 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
                 <button
                   key={link.name}
                   onClick={(e) => handleLinkClick(e, link.id)}
-                  className={`text-xs sm:text-sm font-bold px-4 py-2 rounded-full transition-all duration-300 flex items-center gap-1.5 cursor-pointer ${
+                  className={`text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${
                     isActive
-                      ? 'bg-indigo-50/90 text-indigo-600 border border-indigo-200/90 shadow-sm shadow-indigo-500/15 backdrop-blur-sm scale-[1.02]'
-                      : 'text-slate-600 hover:text-indigo-600 hover:bg-indigo-50/50 border border-transparent'
+                      ? 'bg-indigo-500/10 text-indigo-600 border border-indigo-500/20 shadow-none backdrop-blur-sm scale-[1.02]'
+                      : 'text-slate-600 hover:text-indigo-600 hover:bg-white/40 border border-transparent'
                   }`}
                 >
                   <Icon className="w-3.5 h-3.5" />
@@ -113,10 +113,10 @@ export default function Navbar({ currentPage = 'home', onNavigate }) {
             })}
           </nav>
 
-          {/* Mobile Hamburger Toggle Button */}
+          {/* Mobile Hamburger Toggle Button - Transparent Glass */}
           <button
             onClick={() => setMobileMenuOpen(true)}
-            className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 rounded-2xl bg-white/85 backdrop-blur-md border border-slate-200/90 text-slate-800 hover:text-indigo-600 focus:outline-none ml-auto cursor-pointer shadow-soft-sm active:scale-95 transition-all"
+            className="md:hidden min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 rounded-2xl bg-white/30 hover:bg-white/50 backdrop-blur-md border border-white/60 text-slate-800 hover:text-indigo-600 focus:outline-none ml-auto cursor-pointer shadow-none active:scale-95 transition-all"
             aria-label="Open side navigation menu"
             aria-expanded={mobileMenuOpen}
           >
