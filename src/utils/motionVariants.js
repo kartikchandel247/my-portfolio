@@ -6,97 +6,93 @@
 
 // 1. Fast Vertical Spring Animations (Header, lead copy, stats)
 export const fadeUp = {
-  hidden: { opacity: 0, y: 18, scale: 0.98 },
+  hidden: { opacity: 0, y: 16, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      type: 'spring',
-      stiffness: 380,
-      damping: 28,
-      mass: 0.5,
+      opacity: { duration: 0.12, ease: 'easeOut' },
+      y: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
+      scale: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
     },
   },
 };
 
 export const fadeDown = {
-  hidden: { opacity: 0, y: -18, scale: 0.98 },
+  hidden: { opacity: 0, y: -16, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      type: 'spring',
-      stiffness: 380,
-      damping: 28,
-      mass: 0.5,
+      opacity: { duration: 0.12, ease: 'easeOut' },
+      y: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
+      scale: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
     },
   },
 };
 
 // 2. Snappy Horizontal Slide-In Effects (Left vs Right)
 export const slideLeft = {
-  hidden: { opacity: 0, x: -28, scale: 0.98 },
+  hidden: { opacity: 0, x: -20, scale: 0.98 },
   visible: {
     opacity: 1,
     x: 0,
     scale: 1,
     transition: {
-      type: 'spring',
-      stiffness: 380,
-      damping: 28,
-      mass: 0.5,
+      opacity: { duration: 0.12, ease: 'easeOut' },
+      x: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
+      scale: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
     },
   },
 };
 
 export const slideRight = {
-  hidden: { opacity: 0, x: 28, scale: 0.98 },
+  hidden: { opacity: 0, x: 20, scale: 0.98 },
   visible: {
     opacity: 1,
     x: 0,
     scale: 1,
     transition: {
-      type: 'spring',
-      stiffness: 380,
-      damping: 28,
-      mass: 0.5,
+      opacity: { duration: 0.12, ease: 'easeOut' },
+      x: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
+      scale: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
     },
   },
 };
 
 // 3. Fast Zoom-In / Zoom-Out Scale Transitions
 export const zoomIn = {
-  hidden: { opacity: 0, scale: 0.94, y: 10 },
+  hidden: { opacity: 0, scale: 0.95, y: 10 },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
     transition: {
-      type: 'spring',
-      stiffness: 400,
-      damping: 28,
-      mass: 0.5,
+      opacity: { duration: 0.12, ease: 'easeOut' },
+      scale: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
+      y: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
     },
   },
 };
 
 export const zoomOutSettle = {
-  hidden: { opacity: 0, scale: 1.05, y: 10 },
+  hidden: { opacity: 0, scale: 1.04, y: 10 },
   visible: {
     opacity: 1,
     scale: 1.0,
     y: 0,
     transition: {
-      duration: 0.28,
-      ease: [0.16, 1, 0.3, 1],
+      opacity: { duration: 0.12, ease: 'easeOut' },
+      scale: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
+      y: { duration: 0.18, ease: [0.16, 1, 0.3, 1] },
     },
   },
 };
 
 // 4. Staggered Container Factory (Snappy delay and child intervals)
-export const staggerContainer = (staggerChildren = 0.05, delayChildren = 0.03) => ({
+export const staggerContainer = (staggerChildren = 0.04, delayChildren = 0.02) => ({
   hidden: {},
   visible: {
     transition: {

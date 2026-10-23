@@ -54,7 +54,7 @@ export default function About({ onNavigate }) {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
+            viewport={{ once: false, amount: 0, margin: "250px 0px" }}
             variants={slideLeft}
             className="lg:col-span-5 flex justify-center will-change-transform"
           >
@@ -67,9 +67,10 @@ export default function About({ onNavigate }) {
                   <img
                     src="/kartik-portrait.jpg"
                     alt="Kartik Chandel Profile"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                    loading="eager"
+                    fetchPriority="high"
+                    decoding="sync"
+                    className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-105"
                   />
                   {/* Subtle Top Gradient Sheen */}
                   <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-60" />
@@ -91,7 +92,7 @@ export default function About({ onNavigate }) {
           <motion.div
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
+            viewport={{ once: false, amount: 0, margin: "250px 0px" }}
             variants={slideRight}
             className="lg:col-span-7 space-y-6 will-change-transform text-left"
           >
