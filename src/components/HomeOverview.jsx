@@ -29,6 +29,13 @@ export default function HomeOverview({ onNavigate }) {
     margin: '-30px 0px -30px 0px',
   });
 
+  const skillsRef = useRef(null);
+  const isSkillsInView = useInView(skillsRef, {
+    once: false,
+    amount: 0.25,
+    margin: '-40px 0px -40px 0px',
+  });
+
   const quickStats = [
     { number: '4+', label: 'Flagship Projects', detail: 'Mobile, Web, CRM, AI' },
     { number: '100+', label: 'QA Test Scenarios', detail: 'Automated & Manual Probes' },
@@ -403,13 +410,36 @@ export default function HomeOverview({ onNavigate }) {
         </div>
       </section>
 
-      {/* 6. Short Tech Stack Quick Ribbon */}
+      {/* 6. Short Tech Stack Quick Ribbon (Zoom-out card + 0.5s Staggered Technology Text Entrance) */}
       <section className="relative py-6 overflow-hidden">
         <SectionBackground variant="skills" showTopDivider={false} showBottomDivider={false} />
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="p-6 sm:p-8 rounded-3xl bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-soft-sm text-center space-y-6">
-            <div className="space-y-2 max-w-xl mx-auto">
+        <div ref={skillsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial="hidden"
+            animate={isSkillsInView ? 'visible' : 'hidden'}
+            variants={{
+              hidden: {
+                opacity: 0,
+                scale: 1.12, // Zoom out entrance on scroll as requested!
+                y: 25,
+              },
+              visible: {
+                opacity: 1,
+                scale: 1.0, // Zooms out to settle into clean normal alignment
+                y: 0,
+                transition: {
+                  duration: 0.65,
+                  ease: [0.16, 1, 0.3, 1],
+                },
+              },
+            }}
+            className="p-6 sm:p-8 rounded-3xl bg-white/90 backdrop-blur-md border border-slate-200/90 shadow-soft-sm text-center space-y-6 relative overflow-hidden will-change-transform"
+          >
+            {/* Ambient subtle light sweep */}
+            <div className="pointer-events-none absolute inset-0 -translate-x-full animate-beam-sweep bg-gradient-to-r from-transparent via-indigo-500/10 to-transparent z-0 rounded-[inherit]" />
+
+            <div className="space-y-2 max-w-xl mx-auto relative z-10">
               <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full border border-indigo-200/70">
                 Skills Snapshot
               </span>
@@ -421,27 +451,59 @@ export default function HomeOverview({ onNavigate }) {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-3xl mx-auto">
+            {/* Technologies container with exact 0.5s gap between invisible to visible */}
+            <motion.div
+              initial="hidden"
+              animate={isSkillsInView ? 'visible' : 'hidden'}
+              variants={{
+                hidden: {},
+                visible: {
+                  transition: {
+                    staggerChildren: 0.5, // Exact 0.5s gap as requested!
+                    delayChildren: 0.25,
+                  },
+                },
+              }}
+              className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 max-w-3xl mx-auto relative z-10"
+            >
               {topTech.map((item) => (
-                <span
+                <motion.span
                   key={item.name}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold border shadow-2xs ${item.color}`}
+                  variants={{
+                    hidden: {
+                      opacity: 0, // Starts invisible
+                      scale: 0.45,
+                      y: 18,
+                    },
+                    visible: {
+                      opacity: 1, // Becomes visible
+                      scale: 1,
+                      y: 0,
+                      transition: {
+                        type: 'spring',
+                        stiffness: 280,
+                        damping: 18,
+                      },
+                    },
+                  }}
+                  whileHover={{ scale: 1.12, y: -4, transition: { duration: 0.15 } }}
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-bold border shadow-2xs cursor-pointer will-change-transform ${item.color}`}
                 >
                   {item.name}
-                </span>
+                </motion.span>
               ))}
-            </div>
+            </motion.div>
 
-            <div>
+            <div className="relative z-10">
               <button
                 onClick={() => onNavigate('skills')}
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/70 px-4 py-2.5 rounded-xl transition-all border border-indigo-200 cursor-pointer"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100/70 px-4 py-2.5 rounded-xl transition-all border border-indigo-200 cursor-pointer hover:shadow-md hover:-translate-y-0.5"
               >
                 <span>View Complete 20+ Skills & Proficiency Breakdown</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
