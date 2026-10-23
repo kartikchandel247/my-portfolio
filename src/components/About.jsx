@@ -53,7 +53,8 @@ export default function About({ onNavigate }) {
           {/* Left Column: Portrait Photo with 3D Tilt & Magnetic Glare */}
           <motion.div
             initial="hidden"
-            animate={isIntroInView ? 'visible' : 'hidden'}
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
             variants={slideLeft}
             className="lg:col-span-5 flex justify-center will-change-transform"
           >
@@ -89,7 +90,8 @@ export default function About({ onNavigate }) {
           {/* Right Column: Main Intro Card with Typewriter Headline */}
           <motion.div
             initial="hidden"
-            animate={isIntroInView ? 'visible' : 'hidden'}
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
             variants={slideRight}
             className="lg:col-span-7 space-y-6 will-change-transform text-left"
           >
@@ -194,7 +196,8 @@ export default function About({ onNavigate }) {
                 <motion.div
                   key={pillar.id}
                   initial="hidden"
-                  animate={isPillarsInView ? 'visible' : 'hidden'}
+                  whileInView="visible"
+                  viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
                   variants={cardVariant}
                   className="h-full will-change-transform"
                 >

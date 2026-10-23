@@ -71,7 +71,8 @@ export default function Contact({ onNavigate }) {
           {/* Left Column: Direct Interactive Badges (Slide from Left) */}
           <motion.div
             initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
             variants={slideLeft}
             className="lg:col-span-5 space-y-6 will-change-transform"
           >
@@ -212,7 +213,8 @@ export default function Contact({ onNavigate }) {
           {/* Right Column: Clean Light-Themed Glassmorphism Form (Slide from Right) */}
           <motion.div
             initial="hidden"
-            animate={isInView ? 'visible' : 'hidden'}
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
             variants={slideRight}
             className="lg:col-span-7 will-change-transform"
           >

@@ -51,7 +51,8 @@ export default function Services({ onNavigate }) {
               <motion.div
                 key={service.id}
                 initial="hidden"
-                animate={isGridInView ? 'visible' : 'hidden'}
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
                 variants={cardVariant}
                 className="h-full will-change-transform"
               >
@@ -162,9 +163,10 @@ export default function Services({ onNavigate }) {
               <motion.div
                 key={step.step}
                 initial="hidden"
-                animate={isWorkflowInView ? 'visible' : 'hidden'}
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.05, margin: "100px 0px" }}
                 variants={fadeUp}
-                transition={{ delay: idx * 0.1 }}
+                transition={{ delay: idx * 0.08 }}
                 className="h-full"
               >
                 <div className="p-5 rounded-2xl bg-white border border-slate-200/90 shadow-soft-sm hover:border-indigo-300 hover:shadow-md transition-all h-full flex flex-col justify-between">

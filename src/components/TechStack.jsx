@@ -102,7 +102,8 @@ export default function TechStack({ onNavigate }) {
               <motion.div
                 key={group.category}
                 initial="hidden"
-                animate={isGridInView ? 'visible' : 'hidden'}
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
                 variants={cardVariant}
                 transition={{ delay: index * 0.1 }}
                 className="h-full will-change-transform"
@@ -169,7 +170,8 @@ export default function TechStack({ onNavigate }) {
         <div ref={terminalRef} className="mt-20">
           <motion.div
             initial="hidden"
-            animate={isTerminalInView ? 'visible' : 'hidden'}
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
             variants={zoomIn}
             className="rounded-3xl bg-slate-950 text-slate-200 border border-slate-800 shadow-2xl p-6 sm:p-8 relative overflow-hidden font-mono text-xs sm:text-sm"
           >

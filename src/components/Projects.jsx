@@ -130,7 +130,8 @@ export default function Projects({ onNavigate }) {
               <motion.div
                 key={project.id}
                 initial="hidden"
-                animate={isProjectsInView ? 'visible' : 'hidden'}
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
                 variants={cardVariant}
                 className="h-full will-change-transform"
               >
@@ -230,7 +231,7 @@ export default function Projects({ onNavigate }) {
                           className="inline-flex items-center gap-1.5 text-slate-700 hover:text-slate-950 px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 transition-all"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          <Github className="w-3.5 h-3.5" />
+                          <GithubIcon className="w-3.5 h-3.5" />
                           <span>Source Code</span>
                         </a>
                       )}
@@ -290,7 +291,7 @@ export default function Projects({ onNavigate }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-900 text-white font-bold text-xs hover:bg-indigo-600 transition-all self-start sm:self-auto shadow-sm cursor-pointer"
             >
-              <Github className="w-3.5 h-3.5" />
+              <GithubIcon className="w-3.5 h-3.5" />
               <span>Explore All Repositories</span>
             </a>
           </div>
@@ -300,7 +301,8 @@ export default function Projects({ onNavigate }) {
               <motion.div
                 key={repo.id || repo.name}
                 initial="hidden"
-                animate={isGithubInView ? 'visible' : 'hidden'}
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.05, margin: "120px 0px" }}
                 variants={zoomIn}
                 transition={{ delay: idx * 0.08 }}
                 className="h-full will-change-transform"
