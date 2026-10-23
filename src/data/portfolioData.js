@@ -30,13 +30,6 @@ export const personalInfo = {
       bgHover: "hover:bg-emerald-50/50",
     },
     {
-      name: "Email",
-      url: "mailto:kartikchandel284@gmail.com",
-      handle: "kartikchandel284@gmail.com",
-      color: "hover:text-indigo-600 hover:border-indigo-400",
-      bgHover: "hover:bg-indigo-50/50",
-    },
-    {
       name: "LinkedIn",
       url: "https://www.linkedin.com/in/kartik-chandel-162b06338",
       handle: "kartik-chandel-162b06338",

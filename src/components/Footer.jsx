@@ -48,27 +48,37 @@ export default function Footer({ onNavigate }) {
           </div>
 
           {/* Social Badges */}
-          <div className="flex items-center gap-3">
-            {personalInfo.socials.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.name}
-                className="w-9 h-9 rounded-full bg-slate-800 hover:bg-indigo-600 hover:text-white flex items-center justify-center text-slate-400 transition-colors"
-              >
-                {social.name === 'GitHub' && <GithubIcon className="w-4 h-4" />}
-                {social.name === 'LinkedIn' && <LinkedinIcon className="w-4 h-4" />}
-                {social.name === 'Instagram' && <InstagramIcon className="w-4 h-4" />}
-                {social.name === 'WhatsApp' && <WhatsAppIcon className="w-4 h-4" />}
-              </a>
-            ))}
+          <div className="flex items-center gap-2.5">
+            {personalInfo.socials.map((social) => {
+              const iconMap = {
+                GitHub: <GithubIcon className="w-4 h-4" />,
+                LinkedIn: <LinkedinIcon className="w-4 h-4" />,
+                Instagram: <InstagramIcon className="w-4 h-4" />,
+                WhatsApp: <WhatsAppIcon className="w-4 h-4" />,
+              };
+
+              // Guard against missing icons to prevent empty circles
+              if (!iconMap[social.name]) return null;
+
+              return (
+                <a
+                  key={social.name}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  title={social.name}
+                  className="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 hover:text-white flex items-center justify-center text-slate-400 transition-all hover:scale-110 active:scale-95"
+                >
+                  {iconMap[social.name]}
+                </a>
+              );
+            })}
 
             <button
               onClick={scrollToTop}
               aria-label="Scroll to top"
-              className="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 flex items-center justify-center transition-colors ml-2"
+              className="w-9 h-9 rounded-full bg-slate-800 hover:bg-indigo-600 hover:text-white text-slate-300 flex items-center justify-center transition-all hover:scale-110 active:scale-95 ml-1.5 cursor-pointer"
               title="Back to top"
             >
               <ArrowUp className="w-4 h-4" />
